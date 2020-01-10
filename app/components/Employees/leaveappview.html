@@ -1,0 +1,139 @@
+  <div id="page_content">
+  <div id="page_content_inner">
+
+    <div class="uk-grid" data-uk-grid-margin>
+      <div class="uk-width-1-1 uk-text-right">
+          <a class="md-btn md-btn-primary md-btn-wave-light" ui-sref="restricted.Employeeleavetable"
+              data-uk-modal="{center:true}"
+              style="text-transform: capitalize;float: right; background-color: #634792;"> 
+              <i class="material-icons">
+                arrow_back_ios
+                </i>BACK</a>
+
+      </div>
+  </div>
+  
+    <div class="md-card uk-margin-medium-bottom">
+      <div class="md-card-content large-padding topborder">
+        <page-heading>Leave Application</page-heading>
+
+        
+
+        <form id="form_validation" class="uk-form-stacked">
+          <div class="uk-grid" data-uk-grid-margin>
+            
+
+
+            <div class="uk-width-medium-1-2 parsley-row">
+              <div class="uk-input-group">
+                <span class="uk-input-group-addon">
+                  <i class="md-list-addon-icon material-icons ico">how_to_reg</i>
+                </span>
+                <label class="uk-form-label">Type of Leave<span class="req">*</span></label>
+                <span class="icheck-inline">
+                  <input type="radio" name="leave"  ng-change = "per()" id="permission" ng-model="leave.leave_type" icheck
+                    value="permission" />
+                  <label for="val_radio_permission" class="inline-label">permission</label>
+                </span>
+                <span class="icheck-inline">
+                  <input type="radio" name="leave" ng-change = "half()" id="halfday" ng-model="leave.leave_type" icheck 
+                    value="halfday" />
+                  <label for="val_radio_halfday" class="inline-label">Half day</label>
+                </span>
+                <span class="icheck-inline">
+                  <input type="radio" name="leave" ng-change = "day()" id="fullday" ng-model="leave.leave_type" icheck
+                    value="fullday" />
+                  <label for="val_radio_fullday" class="inline-label">Full day</label>
+                </span>
+                
+              </div>
+            </div>
+
+
+            <div class="uk-width-medium-1-2 parsley-row">
+              <div class="uk-input-group">
+                <span class="uk-input-group-addon">
+                  <i class="material-icons">person</i>
+                </span>
+                <label for="Leave_employeename">Employee Name<span class="req">*</span></label>
+                <input config="selectize_val_config" options="selectize_val_options"name="employee_name" ng-model="leave.employee_name" required name="val_select" id="val_selectize" selectize />
+              </div>
+            </div>
+          </div>
+
+
+          <div class="uk-grid" data-uk-grid-margin>
+            <div class="uk-width-medium-1-2 parsley-row">
+              <div class="uk-input-group" ng-show = "date" aria-label="Toggle ngShow">
+                <span class="uk-input-group-addon">
+                  <i class="md-list-addon-icon material-icons ico">date_range</i>
+                </span>
+                <label for="from_date">From date<span class="req">*</span></label>
+                <input type="text"  name="from_date" id="from_date"  class="md-input"
+                  data-uk-datepicker="{format:'DD-MM-YYYY'}" md-input ng-model="leave.from_date" />
+              </div>
+              <div class="uk-input-group" ng-hide = "time" aria-label="Toggle ngShow">
+                <span class="uk-input-group-addon">
+                  <i class="md-list-addon-icon material-icons ico">date_range</i>
+                </span>
+                <label for="permission_date">Permission date<span class="req">*</span></label>
+                <input type="text"  name="permission_date" id="permission_date"  class="md-input"
+                  data-uk-datepicker="{format:'DD-MM-YYYY'}" md-input ng-model="leave.permission_date" />
+              </div>
+            </div>
+            <div class="uk-width-medium-1-2 parsley-row">
+              <div class="uk-input-group" ng-show = "date" aria-label="Toggle ngShow">
+                <span class="uk-input-group-addon">
+                  <i class="md-list-addon-icon material-icons ico">date_range</i>
+                </span>
+                <label for="to_date">To date<span class="req">*</span></label>
+                <input type="text" name="to_date" id="to_date"   class="md-input"
+                  data-uk-datepicker="{format:'DD-MM-YYYY'}" ng-change="totaldays(leave)" md-input ng-model="leave.to_date" />
+              </div>
+              <div class="uk-input-group"  ng-hide = "time" aria-label="Toggle ngShow">
+                <span class="uk-input-group-addon">
+                  <i class="md-list-addon-icon material-icons ico">alarm</i>
+                </span>
+                <label for="from_time">From Time<span class="req">*</span></label>
+                <input class="md-input masked_input" id="masked_phone" type="text" ng-model="leave.from_time" data-inputmask="'mask': '99:99'" data-inputmask-showmaskonhover="false" md-input />
+                <span class="uk-input-group-addon">
+                  <i class="md-list-addon-icon material-icons ico">alarm</i>
+                </span>
+                <label for="To_Time">To Time<span class="req">*</span></label>
+                <input class="md-input masked_input" ng-change="totaldays(leave)" id="masked_phone" type="text" ng-model="leave.to_time" data-inputmask="'mask': '99:99'" data-inputmask-showmaskonhover="false" md-input />
+              </div>
+
+            </div>
+          </div>
+          <div class="uk-grid" data-uk-grid-margin>
+            <div class="uk-width-medium-1-2 parsley-row ">
+              <div class="uk-input-group">
+                <span class="uk-input-group-addon">
+                  <i class="material-icons">check_box</i></span>
+                <label for="totaldays">Total <span class="req">*</span></label>
+                <input id="totaldays" ng-model="leave.totaldays" type="text" name="totaldays"  class="md-input"
+                  ng-keypress="CheckNumber()" md-input disabled/>
+              </div>
+            </div>
+            <div class="uk-width-medium-1-2 parsley-row">
+              <div class="uk-input-group ">
+                <span class="uk-input-group-addon">
+                  <i class="md-list-addon-icon material-icons ico">note</i>
+                </span>
+                <label for="leave_reason">Reason For Leave</label>
+                <input class="md-input" id="leave_reason" name="leave_reason" ng-model="leave.leave_reason"
+                  md-input></input>
+              </div>
+            </div>
+          </div>
+          <div class="uk-grid uk-margin-top" data-uk-grid-margin>
+              <div class="uk-width-medium-1-1 uk-text-center parsley-row">
+                <button type="submit" ng-click="save(leave)" class="md-btn md-btn-primary" style="background-color: #634792;"><i class="material-icons">save</i>&nbsp;Save</button>
+                <button type="rest" ng-click="rest(leave)" class="md-btn md-btn-primary" style="background-color: #634792;"><i class="material-icons">redo</i>&nbsp;Reset</button>
+              </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

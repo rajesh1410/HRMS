@@ -1,0 +1,580 @@
+<div id="page_content">
+    <div id="page_content_inner" style="padding-bottom: 0px;">
+
+        <div id="adjustment" class="uk-grid">
+            <div class="uk-width-medium-1-2" style="padding-bottom: 20px;">
+                <div class="md-card" style="margin-bottom: 16px;">
+                    <div class="md-card-content large-padding topborder">
+                        <page-heading>{{mydate|date: "EEEE"}} - {{mydate|date:"dd/MM/yyyy"}}</page-heading>
+                        <div id="adjustment" class="uk-grid" data-uk-grid-margin>
+                            <span ng-hide="hidData" class="uk-width-1-1">
+                                    
+                            <p style="font-size: large"> &nbsp &nbsp &nbsp Click a button below to start measuring your time!</p>
+                            <div id="adjustment" class="uk-grid" data-uk-grid-margin></div>
+                            <div id="adjustment" class="uk-grid" data-uk-grid-margin></div>
+                        </span>
+                            <div>{{ log1|date: "HH:mm:ss" }}</div>
+
+                            <div class="uk-width-1-1" ng-hide="worklabel" style="padding-bottom: 22px;">
+                                <p style="font-size:large ">&nbsp &nbsp &nbsp <i class="material-icons md-24">
+                                            laptop_mac
+                                            </i> Work started at:{{nowTime}}</p>
+
+                            </div>
+                            <div class="uk-grid" data-uk-grid-margin>
+                                <div id="adjustment" class="uk-grid" data-uk-grid-margin>
+                                    <div class="uk-column-1-2@s uk-column-1-3@m uk-column-1-4@l">
+                                        <div class="parsley-row">
+                                            <div ng-hide="label1" style="padding-top: 0px;">
+
+                                                <p style="font-size:x-large"><i class="material-icons md-24 " style="vertical-align: -5px;">build</i> <label ng-model="hours">{{hours}}</label><label id="hr">h</label>:<label>{{minutes}}</label><label id="min">m</label>:<label>{{seconds}}</label>
+                                                    <label id="sec">s</label>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-medium-1-2 giri" style="margin-top: -16px;">
+                                        <div class="parsley-row">
+                                            <div ng-hide="label2"></div>
+                                            <p ng-hide="label2" style="font-size:x-large"><i class="material-icons md-24 " style="vertical-align: -5px;">call</i> <label ng-model="hours">{{hours1}}</label><label id="hr">h</label>:<label>{{minutes1}}</label><label id="min">m</label>:<label>{{seconds1}}</label>
+                                                <label id="sec">s</label>
+                                            </p>
+
+                                            <p ng-hide="label3" style="font-size:x-large"><i class="material-icons md-24 " style="vertical-align: -5px;">fastfood</i> <label ng-model="hours">{{hours2}}</label><label id="hr">h</label>:<label>{{minutes2}}</label><label id="min">m</label>:<label>{{seconds2}}</label>
+                                                <label id="sec">s</label>
+                                            </p>
+
+                                            <p ng-hide="label4" style="font-size:x-large"><i class="material-icons md-24 " style="vertical-align: -5px;">local_cafe</i> <label ng-model="hours">{{hours3}}</label><label id="hr">h</label>:<label>{{minutes3}}</label><label id="min">m</label>:<label>{{seconds3}}</label>
+                                                <label id="sec">s</label>
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+                <div class="md-card ">
+                    <div class="md-card-content" id="buttones">
+
+
+
+                        <div style="height:82px;">
+                            <div class="uk-width-medium-1-1 uk-text-center uk-margin-medium-bottom">
+                                <button id="login" ng-disabled=disin ng-click="start()" class=" uk-width-medium-1-2 md-btn md-btn-success  md-btn-wave waves-effect waves-button"><i class="material-icons md-24" >fingerprint</i><br> Log In</button>
+                                <button id="logout" ng-hide="hide_big_logoutbutton" ng-disabled=disout ng-click="logout();" class=" uk-width-medium-1-2 md-btn md-btn-danger md-btn-wave waves-effect waves-button   "><i class="material-icons md-24 ">exit_to_app</i><br> Log Out</button>
+                                <button id="callout" ng-hide="hide_big_callbutton" ng-disabled=discallout ng-click="calloff();" class=" uk-width-medium-1-2 md-btn md-btn-danger md-btn-wave waves-effect waves-button   "><i class="material-icons md-24 "> phone_iphone</i><br>Finished Call</button>
+                                <button id="lunchout" ng-hide="hide_big_lunchbutton" ng-disabled=dislunchout ng-click="lunchout();" class=" uk-width-medium-1-2 md-btn md-btn-danger md-btn-wave waves-effect waves-button   "><i class="material-icons md-24 "> fastfood</i><br>Finished Lunch</button>
+                                <button id="breakout" ng-hide="hide_big_breakbutton" ng-disabled=disbreakout ng-click="breakout();" class=" uk-width-medium-1-2 md-btn md-btn-danger md-btn-wave waves-effect waves-button   "><i class="material-icons md-24 "> local_cafe</i><br>Finished Break</button>
+                            </div>
+                        </div>
+
+                        <div style="height:82px;">
+
+                            <div class="uk-width-medium-1-1 uk-text-center uk-margin-medium-bottom">
+                                <button id="call" ng-disabled=discallmini ng-click="calling();" class="md-btn   md-btn-wave waves-effect waves-button"><i class="material-icons cancelBtn" >  phone_iphone</i><br> Call</button>
+                                <button id="lunch" ng-disabled=dislunchmini ng-click="lunchin();" class="md-btn md-btn-wave waves-effect waves-button  "><i class="material-icons cancelBtn ">fastfood</i><br> Lunch</button>
+                                <button id="break" ng-disabled=disbreakmini ng-click="breakin();" class="md-btn md-btn-wave waves-effect waves-button  "><i class="material-icons cancelBtn "> local_cafe</i><br> Break</button>
+                                <!-- <button class="md-btn md-btn-wave waves-effect waves-button   " style="border-radius: 8px;width:107px;height:66px;"><i class="material-icons cancelBtn ">store_mall_directory</i><br> Store</button> -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tone" class="uk-width-1-2">
+                <div class="md-card ">
+                    <div class="md-card-content large-padding topborder">
+                        <page-heading>Last Day Report</page-heading>
+                        <div id="adjustment" class="uk-grid">
+
+                            <div class="uk-width-1-1">
+                                <div>
+                                     <!-- <a class="md-btn md-btn-primary md-btn-wave-light" href="#new_log" data-uk-modal="{center:true}" style="text-transform: capitalize;float: right; background-color: #634792;" ng-click="employee()">+ Add New</a> -->
+        
+                                    <p style="color:#8f9692; "> Total worked time</p>
+                                    <label style="font-size: 25px;vertical-align: -9px; "><i class="material-icons md-36 " style="vertical-align: -9px; ">
+                                        alarm
+                                        </i>{{data.total_hrs | date: "hh:mm:ss"}}</label>
+                                </div>
+                                <p style="color:#8f9692; ">&nbsp&nbsp&nbsp Started at</p>
+                                <label style="font-size: 25px; "><i class="material-icons md-36 " style="vertical-align: -9px; ">
+                                        arrow_forward
+                                        </i>{{data.login_time}}</label>
+                            </div>
+
+                            <div class="uk-grid " data-uk-grid-margin></div>
+
+                            <div class="uk-width-medium-1-1 " style="margin-top: 18px;margin-bottom: 20px; ">
+                                <div class="md-btn-group ">
+                                    <a href="javascript:void(0) " class="uk-button uk-button-default uk-button-small md-btn-wave ">Summary</a>
+                                    <a href="javascript:void(0) " class="uk-button uk-button-default uk-button-small md-btn-wave ">Details</a>
+                                </div>
+                            </div>
+
+                            <div class="uk-grid " data-uk-grid-margin></div>
+                            <div class="uk-grid " data-uk-grid-margin></div>
+
+                            <div class="uk-width-1-2 ">
+                                <input class="md-input masked_input" ng-click="mask()" type="text" data-inputmask="'mask': '999-999-999-999'" data-inputmask-showmaskonhover="false" md-input />
+                                <table class="uk-table uk-table-condensed " id="summary ">
+
+
+                                    <thead>
+                                        <tr style="padding-top: 24px; ">
+                                            <th class="uk-text-small ">Activity</th>
+                                            <th class="uk-text-small ">Time</th>
+                                        </tr>
+                                    </thead>
+
+
+                                    <tfoot>
+                                        <th class="uk-text-small ">Total</th>
+                                        <th class="uk-text-small ">{{total}}</th>
+
+                                    </tfoot>
+
+
+                                    <tbody>
+                                        <tr>
+                                            <td class="uk-text-small ">Call Duration</td>
+                                            <td class="uk-text-small ">{{call}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="uk-text-small ">Lunch Duration</td>
+                                            <td class="uk-text-small ">{{lunch}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="uk-text-small ">Break Duration</td>
+                                            <td class="uk-text-small ">{{break}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<!-- popup -->
+
+<!-- <div class="uk-modal" id="new_log">
+        <div class="uk-modal-dialog">
+            <button type="button" class="uk-modal-close uk-close"></button>
+            <div class="uk-modal-header">
+                <h3 class="uk-modal-title">{{ newTask.name }}</h3>
+            </div>
+                
+                
+                <form id="form_validation" class="uk-form-stacked" ng-submit="save(time)" ng-model="time">     
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-large-1-2 uk-width-medium-1-1">
+                        <div class="uk-input-group">
+                                <span class="uk-input-group-addon"><i class="material-icons">person</i></span>
+                                <label for="task_assignee" class="uk-form-label">Employee</label>
+                                <selectize id="selec_emp_single" config="selectize_emp_config" options="selectize_emp_options" position="bottom" name="employee_name" ng-model="time.employee_name" ></selectize>
+                        </div>
+                    </div>
+                    <div class="uk-width-large-1-2 uk-width-medium-1-1">
+                        <div class="uk-input-group">
+                                <span class="uk-input-group-addon"><i class="material-icons">merge_type</i></span>
+                                <label for="task_assignee" class="uk-form-label">Type</label>
+                                <selectize id="selec_type_single" config="selectize_type_config" options="selectize_type_options" position="bottom" name="type" ng-model="time.type" ></selectize>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-grid" data-uk-grid-margin>
+                        <div class="uk-width-large-1-2 uk-width-medium-1-1">
+                            <div class="uk-input-group">
+                                    <span class="uk-input-group-addon"><i class="material-icons">alarm_add</i></span>
+                                    <label for="task_assignee" class="uk-form-label">Strat Time</label>
+                                    <input class="md-input masked_input" id="masked_phone" type="text" ng-model="time.strat" data-inputmask="'mask': '99:99:99'" data-inputmask-showmaskonhover="false" md-input />
+                            </div>
+                        </div>
+                        <div class="uk-width-large-1-2 uk-width-medium-1-1">
+                            <div class="uk-input-group">
+                                    <span class="uk-input-group-addon"><i class="material-icons">alarm_on</i></span>
+                                    <label for="task_assignee" class="uk-form-label">End Time</label>
+                                    <input class="md-input masked_input" id="masked_phone" type="text" ng-model="time.end" data-inputmask="'mask': '99:99:99'" data-inputmask-showmaskonhover="false" md-input />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-grid" data-uk-grid-margin>
+                            <div class="uk-width-large-1-1 uk-width-medium-1-1">
+                                <div class="uk-input-group">
+                                        <span class="uk-input-group-addon"><i class="material-icons">date_range</i></span>
+                                        <label for="task_assignee" class="uk-form-label">Date</label>
+                                        <input type="text" name="date" id="date" required class="md-input" data-parsley-americandate data-parsley-americandate-message="This value should be a valid date (DD.MM.YYYY)" data-uk-datepicker="{format:'DD.MM.YYYY'}" md-input ng-model="time.date"/>
+                                </div>
+                            </div>
+                            
+                    </div>
+                <div class="uk-modal-footer uk-text-right">
+                    <button type="button" ng-clik="reset(newTask)" class="md-btn md-btn-flat uk-modal-close">Close</button>
+                    <button type="submit" ng-click="add(newTask)" class="md-btn md-btn-flat md-btn-flat-primary" id="snippet_new_save"  style="background-color: #634792; color: white">Add Task</button>
+                    
+                </div>
+
+                
+            </form>
+        </div>
+    </div> -->
+
+
+<style>
+    @media (min-width: 1281px) {
+        #login {
+            width: 234px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #logout {
+            width: 234px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #call {
+            min-width: 130px;
+            border-radius: 5px;
+        }
+        #callout {
+            width: 234px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #lunch {
+            min-width: 130px;
+            border-radius: 5px;
+        }
+        #lunchout {
+            width: 234px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #break {
+            min-width: 130px;
+            border-radius: 5px;
+        }
+        #breakout {
+            width: 234px;
+            height: 66px;
+            border-radius: 5px;
+        }
+    }
+    /* Media Query for Laptops and Desktops */
+    
+    @media (min-width: 1025px) and (max-width: 1280px) {
+        #login {
+            width: 234px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #logout {
+            width: 234px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #call {
+            min-width: 130px;
+            border-radius: 5px;
+        }
+        #callout {
+            width: 234px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #lunch {
+            min-width: 130px;
+            border-radius: 5px;
+        }
+        #lunchout {
+            width: 234px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #break {
+            min-width: 130px;
+            border-radius: 5px;
+        }
+        #breakout {
+            width: 234px;
+            height: 66px;
+            border-radius: 5px;
+        }
+    }
+    
+    @media only screen and (max-width: 1095px) {
+        #login {
+            width: 187px;
+            border-radius: 5px;
+        }
+        #logout {
+            width: 187px;
+            border-radius: 5px;
+        }
+        #callout {
+            width: 187px;
+            border-radius: 5px;
+        }
+        #lunchout {
+            width: 187px;
+            border-radius: 5px;
+        }
+        #breakout {
+            width: 187px;
+            border-radius: 5px;
+        }
+    }
+    
+    @media only screen and (max-width: 800px) {
+        #login {
+            width: 190px;
+            border-radius: 5px;
+        }
+        #logout {
+            width: 190px;
+            border-radius: 5px;
+        }
+        #callout {
+            width: 190px;
+            border-radius: 5px;
+        }
+        #lunchout {
+            width: 190px;
+            border-radius: 5px;
+        }
+        #breakout {
+            width: 190px;
+            border-radius: 5px;
+        }
+    }
+    
+    @media only screen and (max-width: 900px) {
+        #login {
+            width: 145px;
+            border-radius: 5px;
+        }
+        #logout {
+            width: 145px;
+            border-radius: 5px;
+        }
+        #call {
+            width: 77px;
+            border-radius: 5px;
+        }
+        #callout {
+            width: 145px;
+            border-radius: 5px;
+        }
+        #lunch {
+            width: 77px;
+            border-radius: 5px;
+        }
+        #lunchout {
+            width: 145px;
+            border-radius: 5px;
+        }
+        #break {
+            width: 77px;
+            border-radius: 5px;
+        }
+        #breakout {
+            width: 145px;
+            border-radius: 5px;
+        }
+        .giri {
+            margin-left: 1px;
+        }
+    }
+    
+    @media only screen and (max-width: 780px) {
+        #login {
+            width: 140px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #logout {
+            width: 140px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #call {
+            width: 77px;
+            border-radius: 5px;
+        }
+        #callout {
+            width: 140px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #lunch {
+            width: 77px;
+            border-radius: 5px;
+        }
+        #lunchout {
+            width: 140px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #break {
+            width: 77px;
+            border-radius: 5px;
+        }
+        #breakout {
+            width: 140px;
+            height: 66px;
+            border-radius: 5px;
+        }
+    }
+    
+    @media (max-width:767px) {
+        #tone {
+            width: 100%;
+        }
+        #login {
+            width: 230px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #logout {
+            width: 230px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #call {
+            width: 120px;
+            border-radius: 5px;
+        }
+        #callout {
+            width: 230px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #lunch {
+            width: 120px;
+            border-radius: 5px;
+        }
+        #lunchout {
+            width: 230px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #break {
+            width: 120px;
+            border-radius: 5px;
+        }
+        #breakout {
+            width: 230px;
+            height: 66px;
+            border-radius: 5px;
+        }
+    }
+    
+    @media (max-width: 551px) {
+        #login {
+            width: 187px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #logout {
+            width: 187px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #call {
+            width: 120px;
+            border-radius: 5px;
+        }
+        #callout {
+            width: 187px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #lunch {
+            width: 120px;
+            border-radius: 5px;
+        }
+        #lunchout {
+            width: 187px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #break {
+            width: 120px;
+            border-radius: 5px;
+        }
+        #breakout {
+            width: 187px;
+            height: 66px;
+            border-radius: 5px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        #login {
+            width: 125px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #logout {
+            width: 125px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #tone {
+            width: 100%;
+        }
+        #call {
+            border-radius: 8px;
+            width: 80px;
+            height: 60px;
+        }
+        #callout {
+            width: 125px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #lunch {
+            border-radius: 8px;
+            width: 80px;
+            height: 60px;
+        }
+        #lunchout {
+            width: 125px;
+            height: 66px;
+            border-radius: 5px;
+        }
+        #break {
+            border-radius: 8px;
+            width: 80px;
+            height: 60px;
+        }
+        #breakout {
+            width: 125px;
+            height: 66px;
+            border-radius: 5px;
+        }
+    }
+</style>

@@ -1,0 +1,90 @@
+<div id="page_content">
+    <div id="page_content_inner">
+        <div class="md-card uk-margin-large-bottom">
+            <div class="md-card-content large-padding topborder">
+                <div class="heading_bg toptext">
+                    <div class="heading_bg_text">
+                        Position
+                    </div>
+                    <div class="parallelogram"></div>
+                </div>
+                <div class="uk-overflow-container">
+                    <table datatable="ng" dt-options="showCase.dtOptions" dt-column-defs="showCase.dtColumnDefs" class="uk-table" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th class="uk-width-2-10">SI.No</th>
+                                <th class="uk-width-2-10">Position</th>
+                                <th class="uk-width-2-10 uk-text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="row in test">
+                                <td>{{row.id}}</td>
+                                <td>{{row.event}}</td>
+                                <td class="uk-text-center">
+                                    <a href="#new_task" data-uk-modal="{ center:true, bgclose:false }"><i class="md-icon material-icons">&#xE254;</i></a>
+                                    <a href="#"><i class="md-icon material-icons">delete</i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="md-fab-wrapper">
+    <a class="md-fab md-fab-accent" href="#new_task1" data-uk-modal="{ center:true, bgclose:false }" style="background-color: #634792; color: white">
+        <i class="material-icons">&#xE145;</i>
+    </a>
+</div>
+<div class="uk-modal" id="new_task">
+    <div class="uk-modal-dialog">
+        <button type="button" class="uk-modal-close uk-close"></button>
+        <h3>Edit the Selected Row</h3>
+        <div class="uk-modal-header">
+        </div>
+        <form class="uk-form-stacked">
+            <div class="uk-margin-medium-bottom">
+                <div class="uk-input-group">
+                    <span class="uk-input-group-addon"><i class="material-icons">work</i></span>
+                    <label for="task_title">Position</label>
+                    <input type="text" class="md-input" id="Task_title" name="snippet_title" ng-model="newTask" md-input />
+                </div>
+            </div>
+            <div class="uk-modal-footer uk-text-right">
+                <button type="button" class="md-btn md-btn-flat uk-modal-close">Close</button><button type="button" class="md-btn md-btn-flat md-btn-flat-primary" id="snippet_new_save" style="background-color: #634792; color: white">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="uk-modal" id="new_task1">
+    <div class="uk-modal-dialog">
+        <button type="button" class="uk-modal-close uk-close"></button>
+        <h3>Add New Position</h3>
+        <div class="uk-modal-header">
+        </div>
+        <form class="uk-form-stacked">
+            <div class="uk-margin-medium-bottom">
+                <div class="uk-input-group">
+                    <span class="uk-input-group-addon"><i class="material-icons">work</i></span>
+                    <label for="task_title">Position</label>
+                    <input type="text" class="md-input" id="Task_title" name="snippet_title" ng-model="newTask" md-input />
+                </div>
+            </div>
+            <div class="uk-modal-footer uk-text-right">
+                <button type="button" class="md-btn md-btn-flat uk-modal-close">Close</button><button type="button" class="md-btn md-btn-flat md-btn-flat-primary" id="snippet_new_save" style="background-color: #634792; color: white">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<style>
+.dataTables_wrapper .dataTables_filter {
+border: 1px solid rgba(0, 0, 0, 0.2);
+background-color: #efefef;
+}
+</style>

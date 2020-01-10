@@ -1,0 +1,148 @@
+<style type="text/css">
+    .cp_altair {
+    padding: 8px 0;
+    overflow: hidden;
+    }
+    .cp_altair span {
+    width: 24px;
+    height: 24px;
+    margin: 0 8px 8px 0;
+    float: left;
+    -webkit-transition: all 280ms ease-out;
+    transition: all 280ms ease-out;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    }
+    .cp_altair span.active_color {
+    border-radius: 50%;
+    cursor: default;
+    }
+    </style>
+    <div id="page_content">
+        <div id="page_content_inner">
+            <div class="md-card uk-margin-large-bottom">
+                <div class="md-card-content large-padding topborder">
+                    <div class="heading_bg toptext">
+                        <div class="heading_bg_text">
+                            Holidays
+                        </div>
+                        <div class="parallelogram"></div>
+                    </div>
+                    <form id="wizard_advanced_form" class="uk-form-stacked">
+                        <wizard on-finish="finishedWizard()" template="app/templates/wizard.tpl.html">
+                        <wz-step wz-title="Calender" template="app/templates/wizard.step.tpl.html">
+                        <div class="md-card">
+                            <div class="md-card-content">
+                                <div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="myCalendar"></div>
+                            </div>
+                        </div>
+                        </wz-step>
+                        <wz-step wz-title="List of Holidays" template="app/templates/wizard.step.tpl.html">
+                        <div class="uk-overflow-container">
+                        <a class="md-btn md-btn-primary md-btn-small md-btn-wave-light" class="md-fab md-fab-accent" href="#new_task" data-uk-modal="{ center:true, bgclose:false }" style="background-color: #634792;float: right;"><i class="material-icons">&#xE145; </i>Add New</a><br><br>
+                        </div>
+                        <div class="md-card uk-margin-medium-bottom">
+                            <div class="md-card-content">
+                                <div class="uk-overflow-container">
+                                    <table class="uk-table uk-table-align-vertical uk-table-striped uk-table-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th class="uk-width-2-10"><strong>SI.No</strong></th>
+                                                <th class="uk-width-2-10"><strong>Holiday Type</strong></th>
+                                                <th class="uk-width-2-10 uk-text-center"><strong>Date</strong></th>
+                                                <th class="uk-width-2-10 uk-text-center"><strong>Actions</strong></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="Data in Datas">
+                                                <td>{{$index+1}}</td>
+                                                <td>{{Data.Holidays}}</td>
+                                                <td class="uk-text-center">{{Data.Date |date:"dd-MM-yyyy"}}</td>
+                                                <td class="uk-text-center">
+                                                    <a ng-click="edit(Data)"data-uk-modal="{ center:true, bgclose:false }"><i class="md-icon material-icons">&#xE254;</i></a>
+                                                    <a ng-click="DeleteHolidays(Data)"><i class="md-icon material-icons">delete</i></a>
+                                                </td>
+                                            </tr>
+                                            <!-- <tr>
+                                                <td>2</td>
+                                                <td>Pongal</td>
+                                                <td class="uk-text-center">19/9/2019</td>
+                                                <td class="uk-text-center">
+                                                    <a href="#new_task" data-uk-modal="{ center:true, bgclose:false }"><i class="md-icon material-icons">&#xE254;</i></a>
+                                                    <a href="#"><i class="md-icon material-icons">delete</i></a>
+                                                </td>
+                                            </tr> -->
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        </wz-step>
+                        </wizard>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="uk-modal" id="new_task">
+        <div class="uk-modal-dialog">
+            <button type="button" class="uk-modal-close uk-close"></button>
+            <h3>Holiday</h3>
+            <div class="uk-modal-header">
+            </div>
+            <form class="uk-form-stacked" ng-submit="save(newTask)">
+                <div class="uk-margin-medium-bottom">
+                    <div class="uk-input-group">
+                        <span class="uk-input-group-addon"><i class="material-icons">title</i></span>
+                        <label for="task_title">Event</label>
+                        <input type="text" class="md-input" id="Task_title" name="snippet_title" required ng-model="newTask.Holidays" md-input />
+                    </div>
+                </div>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-large-1-1 uk-width-medium-1-1">
+                        <div class="uk-input-group">
+                            <span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-calendar"></i></span>
+                            <label for="uk_dp_start">Date</label>
+                            <!-- <input class="md-input" type="text" id="uk_dp_start" required md-input ng-model="newTask.Date"> -->
+                            <input type="text" name="Date" id="val_Date"  class="md-input" data-parsley-americandate data-parsley-americandate-message="This value should be a valid date (DD-MM-YYYY)" data-uk-datepicker="{format:'DD-MM-YYYY'}" md-input ng-model="newTask.Date"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-modal-footer uk-text-right">
+                    <button type="button" ng-click="reset()" class="md-btn md-btn-flat uk-modal-close">Close</button>
+                    <button type="submit" class="md-btn md-btn-flat md-btn-flat-primary" id="snippet_new_save" style="background-color:#2196f3; color: white">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Calender -->
+    <div class="uk-modal" id="#popup">
+        <div class="uk-modal-dialog">
+            <button type="button" class="uk-modal-close uk-close"></button>
+            <h3>Edit the Selected Row</h3>
+            <div class="uk-modal-header">
+            </div>
+            <form class="uk-form-stacked">
+                <div class="uk-margin-medium-bottom">
+                    <div class="uk-input-group">
+                        <span class="uk-input-group-addon"><i class="material-icons">title</i></span>
+                        <label for="task_title">Event</label>
+                        <input type="text" class="md-input" id="Task_title" name="snippet_title" ng-model="newTask.Holidays" md-input />
+                    </div>
+                </div>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-large-1-1 uk-width-medium-1-1">
+                        <div class="uk-input-group">
+                            <span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-calendar"></i></span>
+                            <label for="uk_dp_start">Date</label>
+                            <input class="md-input" type="text" id="uk_dp_start" md-input ng-model="newTask.Date">
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-modal-footer uk-text-right">
+                    <button type="button" class="md-btn md-btn-flat uk-modal-close">Close</button><button type="button" class="md-btn md-btn-flat md-btn-flat-primary md-btn md-btn-flat uk-modal-close" id="snippet_new_save" ng-click="save(newTask)" style="background-color:#2196f3; color: white">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>

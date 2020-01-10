@@ -1,0 +1,165 @@
+<div id="page_content">
+  <div id="page_content_inner">
+    <div class="md-card">
+      <div class="md-card-content large-padding topborder">
+      <page-heading>Trainee Form</page-heading>
+      <p>{{myWelcome}}</p>
+      <form id="form_validation" class="uk-form-stacked" ng-submit="postRecive(Details)" ng-model="Details">
+        <div class="uk-grid" data-uk-grid-margin>
+          <div class="uk-width-medium-1-2 parsley-row">
+            <div class="uk-input-group">
+              <span class="uk-input-group-addon">
+                <i class="material-icons">person</i>
+              </span>
+              <label for="Details_Traineename">Trainee Name <span class="req">*</span></label>
+              <input type="text" name="Traineename" id="Traineename" required class="md-input"
+              md-input ng-model="Details.Traineename" />
+            </div>
+          </div>
+          <div class="uk-width-medium-1-2 parsley-row">
+            <div class="uk-input-group">
+              <span class="uk-input-group-addon">
+                <i class="material-icons">school</i>
+              </span>
+              <label for="Details_Qualification">Qualification<span class="req"></span></label>
+              <input type="text" name="Qualification" id="Qualification" required class="md-input"
+              md-input ng-model="Details.Qualification" />
+              
+            </div>
+          </div>
+        </div>
+        <div class="uk-grid" data-uk-grid-margin>
+          <div class="uk-width-medium-1-2 parsley-row">
+            <label for="val_selectize" class="uk-form-label"></label>
+            <div class="uk-input-group parsley-row">
+              <span class="uk-input-group-addon">
+                <i class="md-list-addon-icon material-icons">layers</i>
+              </span>
+              <input config="selectize_course" options="selectize_val_course"
+              ng-model="Details.Course" required name="Course" id="val_selectize" selectize />
+            </div>
+          </div>
+          <div class="uk-width-medium-1-2 parsley-row">
+            <label for="val_selectize" class="uk-form-label"></label>
+            <div class="uk-input-group parsley-row">
+              <span class="uk-input-group-addon">
+                <i class="md-list-addon-icon material-icons">beenhere</i>
+              </span>
+              <input config="selectize_val_config1" options="selectize_val_options1"
+              ng-model="Details.Duration" required name="Duration" id="val_selectize" selectize />
+            </div>
+          </div>
+        </div>
+        <div class="uk-grid" data-uk-grid-margin>
+          <div class="uk-width-medium-1-2 parsley-row">
+            <div class="uk-input-group">
+              <span class="uk-input-group-addon">
+                <i class="md-list-addon-icon material-icons ico">date_range</i>
+              </span>
+              <label for="Form_date">Course Start date</label>
+              <input type="text" name="Start_date" id="Form_date" required class="md-input" data-parsley-americandate
+              data-parsley-americandate-message="This value should be a valid date (YYYY/MM/DD)"
+              data-uk-datepicker="{format:'YYYY/MM/DD'}" md-input ng-model="Details.Start_date" />
+            </div>
+          </div>
+          <div class="uk-width-medium-1-2 parsley-row">
+            <div class="uk-input-group">
+              <span class="uk-input-group-addon">
+                <i class="md-list-addon-icon material-icons ico">date_range</i>
+              </span>
+              <label for="To_date">Course End date</label>
+              <input type="text" name="End_date" id="To_date" required class="md-input" data-parsley-americandate
+              data-parsley-americandate-message="This value should be a valid date (YYYY/MM/DD)"
+              data-uk-datepicker="{format:'YYYY/MM/DD'}" md-input ng-model="Details.End_date" />
+            </div>
+          </div>
+        </div>
+        <div class="uk-grid" data-uk-grid-margin>
+          <div class="uk-width-medium-1-2">
+            <div class="parsley-row">
+              <div class="uk-input-group">
+                <span class="uk-input-group-addon">
+                <i class="material-icons">phone</i></span>
+                <label for="Mobilenumber">MobileNumber <span class="req">*</span></label>
+                <input id="Mobilenumber" ng-model="Details.Mobile_number" type="text" name="Mobile_number" required
+                class="md-input" ng-keypress="CheckNumber()" md-input />
+              </div>
+            </div>
+          </div>
+          <div class="uk-width-medium-1-2 parsley-row">
+            <div class="uk-input-group">
+              <span class="uk-input-group-addon">
+                <i class="material-icons">email</i>
+              </span>
+              <label for="Details_email">Email <span class="req">*</span></label>
+              <input type="Email" name="Email" id="Details_Email" required class="md-input" md-input
+              ng-model="Details.Email" />
+            </div>
+          </div>
+        </div>
+        <div class="uk-grid" data-uk-grid-margin>
+          <div class="uk-width-medium-1-2 parsley-row">
+            <div class="uk-margin-medium-bottom">
+              <div class="uk-input-group">
+                <span class="uk-input-group-addon">
+                <i class="material-icons">home</i></span>
+                <label for="task_description">Address</label>
+                <textarea class="md-input" id="task_description" name="Address" ng-model="Details.Address"
+                md-input></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="uk-grid">
+          <div class="uk-width-1-1 uk-text-center">
+            <a class="md-btn md-btn-primary" href="#new_task" data-uk-modal="{ center:true, bgclose:false }" style="background-color: #634792;">
+            <i class="material-icons">attach_money</i>Fees</a>
+            <button type="submit" ui-sref="restricted.traineedata" class="md-btn md-btn-primary" style="background-color: #634792;"><i class="material-icons">arrow_back</i> Back</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+<div class="uk-modal" id="new_task">
+<div class="uk-modal-dialog">
+<div class="uk-modal-header">
+  <h3 class="uk-modal-title">Fee Details</h3>
+</div>
+<form class="uk-form-stacked"  ng-model="fees">
+  <div class="uk-margin-medium-bottom">
+    <div class="uk-input-group">
+      <span class="uk-input-group-addon"><i class="material-icons">local_atm</i></span>
+    <label for="task_title">Total Fee Amount</label>
+    <input type="text" class="md-input" id="Task_title" name="snippet_title" ng-model="Details.Total_fees" md-input/>
+  </div>
+</div>
+  <div class="uk-margin-medium-bottom">
+    <div class="uk-input-group">
+      <span class="uk-input-group-addon"><i class="material-icons">monetization_on</i></span>
+    <label for="task_title">Paid Amount</label>
+    <input type="text" class="md-input" ng-keyup="FeesCal(Details)" id="Task_title" name="snippet_title" ng-model="Details.paid_amount" md-input/>
+  </div>
+  </div>
+  <div class="uk-margin-medium-bottom">
+    <div class="uk-input-group">
+      <span class="uk-input-group-addon"><i class="material-icons">monetization_on</i></span>
+    <label for="task_title">Remaining Amount</label>
+    <input type="text" class="md-input" id="Task_title" name="snippet_title" ng-model="Details.Remaining_amount" md-input/>
+  </div>
+  </div>
+  <div class="uk-margin-medium-bottom">
+    <div class="uk-input-group">
+    <span class="uk-input-group-addon"><i class="material-icons">calendar_today</i></span>
+    <label for="val_birth">Paid Date</label>
+    <input type="text" name="val_birth" id="val_birth" required class="md-input" data-parsley-americandate data-parsley-americandate-message="This value should be a valid date (YYYY/MM/DD)" ng-model="Details.Paid_date" data-uk-datepicker="{format:'YYYY/MM/DD'}" md-input />
+  </div>
+  </div>
+  <div class="uk-modal-footer uk-text-right">
+    <button type="button" class="md-btn md-btn-flat uk-modal-close" style="background-color: #634792;color: white;">Close</button><button type="submit" class="md-btn md-btn-flat md-btn-flat uk-modal-close" ng-click="postRecive(Details)" id="snippet_new_save" style="background-color: #634792;color: white;">Save</button>
+  </div>
+</form>
+</div>
+</div>

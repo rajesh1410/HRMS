@@ -1,0 +1,357 @@
+<style type="text/css">
+    .user_heading {
+        background-color: #634792;
+    }
+
+    .md-input {
+        color: black;
+    }
+
+    .req {
+        color: DimGray ;
+    }
+</style>
+<div id="page_content">
+    <div id="page_content_inner">
+        <div class="uk-grid" data-uk-grid-margin>
+            <div class="uk-width-1-1 uk-text-right">
+                <button type="submit" ui-sref="restricted.EmployeesData" class="md-btn md-btn-primary"
+                    style="background-color: #634792"> <span><i class="material-icons md-btn-primary"
+                            style="background-color: #634792;color: white">arrow_back_ios</i></span> Back</button>
+            </div>
+        </div>
+
+        <div class="md-card">
+            <div class="user_heading" data-uk-sticky="{ top: 48, media: 960 }">
+                <div class="user_heading_avatar fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail">
+                        <img ng-src="{{img_path}}{{view.img}}" alt="user avatar" />
+                    </div>
+                </div>
+                <div class="user_heading_content">
+                    <h2 class="heading_b">
+                        <span class="uk-text-truncate" id="user_edit_uname">{{view.full_name}}</span>
+                        <span class="sub-heading" id="user_edit_position">{{view.position}}</span>
+                    </h2>
+                </div>
+            </div>
+            <form id="form_validation" class="uk-form-stacked">
+                <div class="md-card-content large-padding">
+                    <ul class="uk-tab" data-uk-tab="{connect:'#tabs_1'}">
+                        <li class="uk-active"><a href="#">Basic Details</a></li>
+                        <li><a href="#">Address Details</a></li>
+                        <li><a href="#">Bank Details</a></li>
+                    </ul>
+                    <ul id="tabs_1" class="uk-switcher uk-margin">
+                        <li><br>
+                            <div class="uk-grid" data-uk-grid-margin>
+                                <div class="uk-width-medium-1-3">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">contacts</i>
+                                            </span>
+                                            <label for="employee_id"><span class="req">Employee Id</span></label>
+                                            <input id="employee_id" type="text" name="employee_id" required
+                                                class="md-input" md-input ng-model="view.employee_id" disabled="" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-3">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">person</i>
+                                            </span>
+                                            <label for="full_name"><span class="req">Full Name</span></label>
+                                            <input id="full_name" type="text" name="full_name" required class="md-input"
+                                                md-input ng-model="view.full_name" disabled="" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-3">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">person</i>
+                                            </span>
+                                            <label for="family_name"><span class="req">Family Name</span></label>
+                                            <input id="family_name" type="text" name="family_name" required
+                                                class="md-input" md-input ng-model="view.family_name" disabled="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="uk-grid" data-uk-grid-margin>
+
+                                <div class="uk-width-medium-1-3">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">person</i>
+                                            </span>
+                                            <label for="gender"><span class="req">Gender</span></label>
+                                            <input id="gender-a" type="text" name="gender" required class="md-input"
+                                                md-input ng-model="view.gender" disabled="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-3">
+                                    <div class="parsley-row uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">date_range</i>
+                                            </span>
+                                            <label for="val_birth"><span class="req">Date Of Birth</span></label>
+                                            <input type="text" name="birth" id="val_birth" required class="md-input"
+                                                data-parsley-americandate
+                                                data-parsley-americandate-message="This value should be a valid date (DD.MM.YYYY)"
+                                                data-uk-datepicker="{format:'DD.MM.YYYY'}" md-input
+                                                ng-model="view.birth" disabled="" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-3">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">date_range</i>
+                                            </span>
+                                            <label for="val_join"><span class="req">Date Of Joining</span></label>
+                                            <input type="text" name="join" id="val_join" required class="md-input"
+                                                data-parsley-americandate
+                                                data-parsley-americandate-message="This value should be a valid date (DD.MM.YYYY)"
+                                                data-uk-datepicker="{format:'DD.MM.YYYY'}" md-input ng-model="view.join"
+                                                disabled="" />
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="uk-grid" data-uk-grid-margin>
+                                <div class="uk-width-medium-1-3">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">work</i>
+                                            </span>
+                                            <label for="position"><span class="req">Position </span> </label>
+                                            <input id="position" type="text" name="position"
+                                                data-parsley-trigger="change" required class="md-input" md-input
+                                                ng-model="view.position" disabled="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-3">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">mail</i>
+                                            </span>
+                                            <label for="email_id"><span class="req">Email ID </span> </label>
+                                            <input id="email_id" type="text" name="email_id"
+                                                data-parsley-trigger="change" required class="md-input" md-input
+                                                ng-model="view.email_id" disabled="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-3">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">local_phone</i>
+                                            </span>
+                                            <label for="phone_number"><span class="req">Phone Number </span> </label>
+                                            <input id="phone_number" type="text" name="phone_number"
+                                                data-parsley-trigger="change" required class="md-input" md-input
+                                                ng-model="view.phone_number" disabled="" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="uk-grid" data-uk-grid-margin>
+                                <div class="uk-width-medium-1-3">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">mail</i>
+                                            </span>
+                                            <label for="official_email"><span class="req">Official Email Id</span>
+                                            </label>
+                                            <input id="official_email" type="text" name="official_email"
+                                                data-parsley-trigger="change" required class="md-input" md-input
+                                                ng-model="view.official_email" disabled="" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-3">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">school</i>
+                                            </span>
+                                            <label for="edudetails"><span class="req">Education Details</span> </label>
+                                            <input id="ed_details" type="text" name="education_details"
+                                                data-parsley-trigger="change" required class="md-input" md-input
+                                                ng-model="view.education_details" disabled="" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-3">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">layers</i>
+                                            </span>
+                                            <label for="skils"><span class="req">Skils</span> </label>
+                                            <input id="skils" type="text" name="skils" data-parsley-trigger="change"
+                                                required class="md-input" md-input ng-model="view.skils" disabled="" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
+                        <li>
+                            <br>
+
+                            <div class="uk-grid" data-uk-grid-margin>
+                                <div class="uk-width-medium-1-2">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">meeting_room</i>
+                                            </span>
+                                            <label for="street_name"><span class="req">Street Name</span></label>
+                                            <input type="text" name="street_name" id="street_name" required
+                                                class="md-input" md-input ng-model="view.street_name" disabled="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-2">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">my_location</i>
+                                            </span>
+                                            <label for="city_town"><span class="req">City/Town </span></label>
+                                            <input type="text" name="city_town" id="city_town" required class="md-input"
+                                                md-input ng-model="view.city_town" disabled="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="uk-grid" data-uk-grid-margin>
+                                <div class="uk-width-medium-1-2">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">room</i>
+                                            </span>
+                                            <label for="district"><span class="req">District</span></label>
+                                            <input type="text" name="district" id="district" required class="md-input"
+                                                md-input ng-model="view.district" disabled="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-2">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">explore</i>
+                                            </span>
+                                            <label for="pin_code"><span class="req">Pin Code</span></label>
+                                            <input type="text" name="pin_code" id="pin_code" required class="md-input"
+                                                md-input ng-model="view.pin_code" disabled="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <br>
+
+                            <div class="uk-grid" data-uk-grid-margin>
+                                <div class="uk-width-medium-1-2">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">account_balance_wallet</i>
+                                            </span>
+                                            <label for="account_number"><span class="req">Account Number</span></label>
+                                            <input type="text" name="account_number" id="account_number" required
+                                                class="md-input" md-input ng-model="view.account_number" disabled="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-2">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">more</i>
+                                            </span>
+                                            <label for="ifsc_code"><span class="req">IFSC Code</span></label>
+                                            <input type="text" name="ifsc_code" id="ifsc_code" required class="md-input"
+                                                md-input ng-model="view.ifsc_code" disabled="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="uk-grid" data-uk-grid-margin>
+                                <div class="uk-width-medium-1-2">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">account_balance</i>
+                                            </span>
+                                            <label for="bank_name"><span class="req">Bank Name</span></label>
+                                            <input type="text" name="bank_name" id="bank_name" required class="md-input"
+                                                md-input ng-model="view.bank_name" disabled="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-2">
+                                    <div class="parsley-row  uk-margin-top">
+                                        <div class="uk-input-group">
+                                            <span class="uk-input-group-addon">
+                                                <i class="material-icons">location_city</i>
+                                            </span>
+                                            <label for="branch_name"><span class="req">Branch Name</span></label>
+                                            <input type="text" name="branch_name" id="branch_name" required
+                                                class="md-input" md-input ng-model="view.branch_name" disabled="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        </li>
+                    </ul>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- <div class="md-fab-wrapper">
+    <a class="md-fab md-fab-primary" ui-sref="restricted.forms.view_edit" style="background-color: #634792;">
+        <i class="material-icons">&#xE150;</i>
+    </a>
+</div> -->

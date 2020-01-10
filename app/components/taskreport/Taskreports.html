@@ -1,0 +1,275 @@
+<div id="page_content" class="uk-height-1-1">
+
+    <div class="scrum_board_menu uk-height-1-1">
+        <div class="scrum_board_menu_heading">Tasks</div>
+        <div class="scrum_board_menu_inner dragula dragula-vertical" dragula='"tasks"' dragula-model='dragula_tasks'>
+            <div ng-repeat="task in get_task">
+
+<!-- Dropdwon start -->
+                <div class="uk-button-dropdown uk-float-right" data-uk-dropdown="{mode:'click',pos:'bottom-right'}">
+                        <i class="md-icon material-icons uk-float-right">&#xE5D4;</i>
+                        <div class="uk-dropdown uk-dropdown-small">
+                            <ul class="uk-nav uk-nav-dropdown">
+                                <!-- <li><a href="#new_task" data-uk-modal="{ center:true }">Add task</a></li> -->
+                                <!-- <li class="uk-nav-divider"></li> -->
+                                <li><a href="#new_task" data-uk-modal="{ center:true, bgclose:false }" ng-click="taskInfo(task)">Edit Task</a></li>
+                                <li><a href="" class="uk-text-danger" ng-click="delete(task.id)">Delete Task</a></li>
+                            </ul>
+                        </div>
+                    </div>
+<!-- Dropdwon end -->
+
+
+                <div class="scrum_task {{ task.status }}">
+                    <h3 class="scrum_task_title"><a href="#task_info" data-uk-modal="{ center:true }" ng-click="Info(task)">{{ task.project }}</a></h3>
+                    <p class="scrum_task_description">{{ task.details }}</p>
+                    <p class="scrum_task_info"><span class="uk-text-muted">Date:</span> {{ task.start }} - {{ task.end }}</p>
+                    <p class="scrum_task_info"><span class="uk-text-muted">Assignee:</span> <a href="">{{ task.full_name }}</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="scrum_board_overflow">
+        <div id="scrum_board" class="uk-clearfix">
+
+            <div ng-repeat="group in task_groups" on-last-repeat>
+                <div class="scrum_column_heading_wrapper">
+                    <div class="scrum_column_heading">{{ group.name }}</div>
+                    <!-- <div class="uk-button-dropdown" data-uk-dropdown="{mode:'click',pos:'bottom-right'}">
+                        <i class="md-icon material-icons">&#xE5D4;</i>
+                        <div class="uk-dropdown uk-dropdown-small">
+                            <ul class="uk-nav uk-nav-dropdown">
+                                <li><a href="#new_task" data-uk-modal="{ center:true }">Add task</a></li>
+                                <li class="uk-nav-divider"></li>
+                                <li><a href="#">Edit Column</a></li>
+                                <li><a href="#" class="uk-text-danger">Delete Column</a></li>
+                            </ul>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="scrum_column">
+                    <div class="dragula dragula-vertical" dragula-scope="$parent" dragula='"tasks"' dragula-model='dragula_tasks' id="{{ group.name }}">
+
+                        <div ng-repeat="task in get_task | filter: { status: group.name }">
+                    
+                            <div class="scrum_task {{ task.status }}">
+
+<!-- dropdwon strat -->
+                <div class="uk-button-dropdown uk-float-right" data-uk-dropdown="{mode:'click',pos:'bottom-right'}">
+                        <i class="md-icon material-icons uk-float-right">&#xE5D4;</i>
+                        <div class="uk-dropdown uk-dropdown-small">
+                            <ul class="uk-nav uk-nav-dropdown">
+                                <!-- <li><a href="#new_task" data-uk-modal="{ center:true }">Add task</a></li> -->
+                                <!-- <li class="uk-nav-divider"></li> -->
+                                <li><a href="#new_task" data-uk-modal="{ center:true, bgclose:false }" ng-click="taskInfo(task)">Edit Task</a></li>
+                                <li><a href="" class="uk-text-danger" ng-click="delete(task.id)">Delete Task</a></li>
+                            </ul>
+                        </div>
+                    </div>
+<!-- dropdown end -->
+
+
+                                <h3 class="scrum_task_title"><a href="#task_info" data-uk-modal="{ center:true }" ng-click="Info(task)">{{ task.project }}</a></h3>
+                                <p class="scrum_task_description">{{ task.details }}</p>
+                                <p class="scrum_task_info"><span class="uk-text-muted">Date:</span> {{ task.start }} - {{ task.end }}</p>
+                                <p class="scrum_task_info"><span class="uk-text-muted">Assignee:</span> <a href="" ng-click="edit(task)">{{ task.full_name }}</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="md-fab-wrapper">
+    <a class="md-fab md-fab-accent" href="#new_task" ng-click="employee()" data-uk-modal="{ center:true, bgclose:false }" style="background-color: #634792">
+        <i class="material-icons">&#xE145;</i>
+    </a>
+</div>
+
+<div class="uk-modal" id="new_task">
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header">
+            <h3 class="uk-modal-title">Task Details</h3>
+        </div>
+        <form class="uk-form-stacked" ng-submit="save(add_task)" ng-model="task">
+            <!-- <div class="uk-margin-medium-bottom">
+                <label for="task_title">Title</label>
+                <input type="text" class="md-input" id="Task_title" name="snippet_title" ng-model="newTask.title" md-input/>
+            </div> -->
+            <div class="uk-margin-medium-bottom">
+                <div class="parsley-row">
+                    <div class="uk-input-group">
+                        <span class="uk-input-group-addon">
+                            <i class="material-icons">label_important</i>
+                        </span>
+                        <!-- <label for="task_project" class="uk-form-label">Projects:</label> -->
+                        <input type="text" config="selectize_1_config" options="selectize_1_options" ng-model="add_task.project" name="project" selectize data-uk-tooltip="{pos:'top'}" title="Select with tooltip">
+                    </div>
+                </div>
+            </div>
+            <div class="uk-margin-medium-bottom">
+                <div class="parsley-row">
+                    <div class="uk-input-group">
+                        <span class="uk-input-group-addon">
+                            <i class="material-icons">keyboard</i>
+                        </span>
+                <label for="task_project" class="uk-form-label">Task</label>
+                <input type="text" class="md-input" id="Task_title" name="details" ng-model="add_task.details" md-input/>
+                    </div>
+                </div>
+            </div>
+    <div class="uk-grid" data-uk-grid-margin>
+        <div class="uk-width-medium-1-2">
+            <div class="uk-margin-medium-bottom">
+                <div class="parsley-row">
+                    <div class="uk-input-group">
+                        <span class="uk-input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <input type="text" config="selectize_2_config" options="selectize_2_options" ng-model="add_task.assign" name="assign" selectize data-uk-tooltip="{pos:'top'}" title="Select with tooltip">
+                        <span class="uk-form-help-block"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="uk-width-medium-1-2">             
+            <div class="uk-margin-medium-bottom">
+                <div class="parsley-row">
+                    <div class="uk-input-group">
+                        <span class="uk-input-group-addon">
+                            <i class="material-icons">adjust</i>
+                        </span>
+                        <input type="text" config="selectize_3_config" options="selectize_3_options" ng-model="add_task.status" name="status" selectize data-uk-tooltip="{pos:'top'}" title="Select with tooltip">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="uk-grid" data-uk-grid-margin>
+        <div class="uk-width-medium-1-2">             
+            <div class="uk-margin-medium-bottom">
+                <div class="parsley-row">
+                    <div class="uk-input-group">
+                            <span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-calendar"></i></span>
+                            <label for="uk_dp_start">Start Date</label>
+                            <input class="md-input" type="text" id="uk_dp_start" md-input ng-model="add_task.start" name="start">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="uk-width-medium-1-2">
+            <div class="uk-margin-medium-bottom">
+                <div class="parsley-row">
+                    <div class="uk-input-group">
+                            <span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-calendar"></i></span>
+                            <label for="uk_dp_end">End Date</label>
+                            <input class="md-input" type="text" id="uk_dp_end" md-input ng-model="add_task.end" name="end">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="uk-grid" data-uk-grid-margin>
+        
+        <div class="uk-width-medium-1-2">
+            <div class="uk-margin-medium-bottom">
+                <div class="parsley-row">
+                    <div class="uk-input-group">
+                            <span class="uk-input-group-addon">
+                    <i class="material-icons">add_photo_alternate</i>
+                </span>
+                        <input type="file" id="input-file-a" class="dropify form-control" name="img" ng-model="add_task.img" accept=""/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                <div class="uk-modal-footer uk-text-right">
+                     <button type="button" class="md-btn md-btn-flat uk-modal-close" ng-click="clear()" >Close</button>
+                     <button type="submit" class="md-btn md-btn-flat md-btn-flat-primary" id="snippet_new_save" ng-if = "add_task.id == null">Add Task</button>
+                     <button type="submit" class="md-btn md-btn-flat md-btn-flat-primary" id="snippet_new_save" ng-if = "add_task.id != null">Update Task</button>
+                </div>
+        </form>
+    </div>
+</div>
+
+<div class="uk-modal" id="task_info">
+        <div class="uk-modal-dialog">
+            <div class="uk-modal-header">
+                <span class="uk-badge uk-badge-danger uk-float-right" ng-if="add_task.status == 'To Do'">To Do</span>
+                <span class="uk-badge uk-badge-success uk-float-right" ng-if="add_task.status == 'In Progress'">In Progress</span>
+                <span class="uk-badge uk-badge-warning uk-float-right" ng-if="add_task.status == 'Done'">Done</span>
+                <h3 class="uk-modal-title">Task Details</h3>
+            </div>
+             <form class="uk-form-stacked">
+            <div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-medium-1-2">
+                    <p class="uk-margin-small-bottom uk-text-muted">Project</p>
+                    <p class="uk-modal-title">{{ add_task.project }}</p>
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <p class="uk-margin-small-bottom uk-text-muted">Description</p>
+                    <p class="uk-margin-remove uk-text-large">{{ add_task.details }}</p>
+                </div>
+            </div>
+            <div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-medium-1-2">
+                    <p class="uk-margin-small-bottom uk-text-muted">Date</p>
+                    <p class="uk-margin-remove">{{ add_task.start }} to <span>{{ add_task.end }}</span> </p>
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <p class="uk-margin-small-bottom uk-text-muted">Assignee</p>
+                    <p class="uk-margin-remove">{{ add_task.full_name }}</p>
+                </div>
+            </div>
+            <div class="uk-grid" data-uk-grid-margin>
+        
+                <div class="uk-width-medium-1-1">
+                    <div class="uk-margin-medium-bottom">
+                        <div class="parsley-row">
+                            <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                            <i class="material-icons"></i>
+                        </span>
+                                <input type="file" id="input-file-b" class="dropify form-control" name="img" ng-model="add_task.img" accept="" disabled/>
+                                <span class="uk-input-group-addon">
+                                    <i class="material-icons"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="uk-modal-footer uk-text-right">
+                    <button type="button" ng-click='clear()' class="md-btn md-btn-flat uk-modal-close">Close</button>
+                </div>
+            </form>
+            <!-- <form class="uk-form-stacked"> -->
+                <!-- <div class="uk-margin-medium-bottom">
+                    <p class="uk-margin-small-bottom uk-text-muted">Description</p>
+                    <p class="uk-margin-remove uk-text-large">{{ add_task.details }}</p>
+                </div>
+                <div class="uk-margin-medium-bottom">
+                    <p class="uk-margin-small-bottom uk-text-muted">Date</p>
+                    <p class="uk-margin-remove">{{ add_task.start }} - <span>{{ add_task.end }}</span> </p>
+                </div>
+                <div class="uk-margin-medium-bottom">
+                    <p class="uk-margin-small-bottom uk-text-muted">Assignee</p>
+                    <p class="uk-margin-remove">{{ add_task.full_name }}</p>
+                </div>
+                <div class="uk-modal-footer uk-text-right">
+                    <button type="button" class="md-btn md-btn-flat uk-modal-close">Close</button>
+                </div> -->
+            <!-- </form> -->
+        </div>
+    </div>

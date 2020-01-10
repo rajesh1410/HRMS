@@ -1,0 +1,385 @@
+<div id="page_content">
+    <div id="page_content_inner">
+        <div class="uk-grid" data-uk-grid-margin>
+            <div class="uk-width-1-1 uk-text-right">
+                <button type="submit" ui-sref="restricted.EmployeesData" class="md-btn md-btn-primary"
+                    style="background-color: #634792"> <span><i class="material-icons md-btn-primary"
+                            style="background-color: #634792;color: white;">arrow_back_ios</i></span> Back</button>
+            </div>
+        </div><br>
+        <form id="form_validation" class="uk-form-stacked" ng-submit="save(Register)" ng-model="Register">
+            <div class="md-card">
+
+
+                <div class="md-card-content large-padding topborder">
+                    <div class="heading_bg toptext">
+                        <div class="heading_bg_text">
+                            Employee General Info
+                        </div>
+                        <div class="parallelogram"></div>
+                    </div>
+
+                    <div class="uk-grid" data-uk-grid-margin>
+                        <div class="uk-width-medium-1-3">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">contacts</i>
+                                    </span>
+                                    <label for="employee_id">Employee Id<span class="req">*</span></label>
+                                    <input id="employee_id" type="text" name="employee_id" required class="md-input"
+                                        md-input ng-model="Register.employee_id" />
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">person</i>
+                                    </span>
+                                    <label for="full_name">Full Name<span class="req">*</span></label>
+                                    <input id="full_name" type="text" name="full_name" class="md-input" md-input
+                                        ng-model="Register.full_name" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">person</i>
+                                    </span>
+                                    <label for="family_name">Family Name<span class="req">*</span></label>
+                                    <input id="family_name" type="text" name="family_name" class="md-input" md-input
+                                        ng-model="Register.family_name" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-grid" data-uk-grid-margin>
+
+                        <div class="uk-width-medium-1-3">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">accessibility_new</i>
+                                    </span>
+                                    <label class="uk-form-label">Gender<span class="req">*</span></label>
+                                    <span class="icheck-inline">
+                                        <input type="radio" name="gender" ng-focus="tab('Male')" id="val_radio_male"
+                                            icheck value="Male" ng-model="Register.gender" />
+                                        <label for="val_radio_male" class="inline-label">Male</label>
+                                    </span>
+                                    <span class="icheck-inline">
+                                        <input type="radio" name="gender" ng-focus="tab('Female')" id="val_radio_female"
+                                            icheck value="Female" ng-model="Register.gender" />
+                                        <label for="val_radio_female" class="inline-label">Female</label>
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3">
+                            <div class="parsley-row uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">date_range</i>
+                                    </span>
+                                    <label for="val_birth">Date Of Birth<span class="req">*</span></label>
+                                    <input type="text" name="birth" id="val_birth" class="md-input"
+                                        data-parsley-americandate
+                                        data-parsley-americandate-message="This value should be a valid date (DD-MM-YYYY)"
+                                        data-uk-datepicker="{format:'DD-MM-YYYY'}" md-input ng-model="Register.birth" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">date_range</i>
+                                    </span>
+                                    <label for="val_join">Date Of Joining<span class="req">*</span></label>
+                                    <input type="text" name="join" id="val_join" class="md-input"
+                                        data-parsley-americandate
+                                        data-parsley-americandate-message="This value should be a valid date (DD-MM-YYYY)"
+                                        data-uk-datepicker="{format:'DD-MM-YYYY'}" md-input ng-model="Register.join" />
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="uk-grid" data-uk-grid-margin>
+                        <div class="uk-width-medium-1-3">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">work</i>
+                                    </span>
+                                    <label for="position">Position<span class="req">*</span></label>
+                                    <selectize id="selec_adv_single" name="position" config="selectize_position_config"
+                                        options="selectize_position_options" position="bottom"
+                                        ng-model="Register.position"></selectize>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">mail</i>
+                                    </span>
+                                    <label for="email_id">Email ID <span class="req">*</span> </label>
+                                    <input id="email_id" type="text" name="email_id" data-parsley-trigger="change"
+                                        class="md-input" md-input ng-model="Register.email_id" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">local_phone</i>
+                                    </span>
+                                    <label for="phone_number">Phone Number <span class="req">*</span> </label>
+                                    <input id="phone_number" type="text" name="phone_number"
+                                        data-parsley-trigger="change" class="md-input" md-input
+                                        ng-model="Register.phone_number" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="uk-grid" data-uk-grid-margin>
+                        <div class="uk-width-medium-1-3">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">mail</i>
+                                    </span>
+                                    <label for="official_email">Official Email Id</label>
+                                    <input id="official_email" type="text" name="official_email"
+                                        data-parsley-trigger="change" class="md-input" md-input
+                                        ng-model="Register.official_email" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">school</i>
+                                    </span>
+                                    <label for="edudetails[]">Education Details</label>
+                                    <selectize id="selec_adv_single" name="ed_details"
+                                        config="selectize_education_config" options="selectize_education_options"
+                                        position="bottom" ng-model="Register.ed_details"></selectize>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">layers</i>
+                                    </span>
+                                    <label for="skills">Skils</label>
+                                    <selectize id="selec_adv_single" name="skills" config="selectize_skils_config"
+                                        options="selectize_skils_options" position="bottom" ng-model="Register.skills">
+                                    </selectize>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="uk-grid" data-uk-grid-margin>
+                        <div class="uk-width-medium-1-3">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">add_photo_alternate</i>
+                                    </span>
+
+                                    <div class="md-card">
+                                        <div class="md-card-content">
+                                            <label for="input-file-a">Image</label>
+                                            <input type="file" id="input-file-a" class="dropify form-control" name="img"
+                                                ng-model="Register.img" accept="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <br><br>
+                    <h2 class="heading_a">Address</h2>
+                    <hr class="md-hr"/> -->
+                <div class="md-card-content large-padding">
+                    <div class="heading_bg toptext">
+                        <div class="heading_bg_text">
+                            Address Info
+                        </div>
+                        <div class="parallelogram"></div>
+                    </div>
+
+                    <div class="uk-grid" data-uk-grid-margin>
+                        <div class="uk-width-medium-1-2">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">meeting_room</i>
+                                    </span>
+                                    <label for="street_name">Street Name</label>
+                                    <input type="text" name="street_name" id="street_name" class="md-input" md-input
+                                        ng-model="Register.street_name" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-2">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">my_location</i>
+                                    </span>
+                                    <label for="city_town">City/Town </label>
+                                    <input type="text" name="city_town" id="city_town" class="md-input" md-input
+                                        ng-model="Register.city_town" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="uk-grid" data-uk-grid-margin>
+                        <div class="uk-width-medium-1-2">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">room</i>
+                                    </span>
+                                    <label for="district">District</label>
+                                    <input type="text" name="district" id="district" class="md-input" md-input
+                                        ng-model="Register.district" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-2">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">explore</i>
+                                    </span>
+                                    <label for="pin_code">Pin Code</label>
+                                    <input type="text" name="pin_code" id="pin_code" class="md-input" md-input
+                                        ng-model="Register.pin_code" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <br><br>
+                    <h2 class="heading_a">Account Info</h2>
+                    <hr class="md-hr" /> -->
+                <div class="md-card-content large-padding">
+                    <div class="heading_bg toptext">
+                        <div class="heading_bg_text">
+                            Account Info
+                        </div>
+                        <div class="parallelogram"></div>
+                    </div>
+
+                    <div class="uk-grid" data-uk-grid-margin>
+                        <div class="uk-width-medium-1-2">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">account_balance_wallet</i>
+                                    </span>
+                                    <label for="account_number">Account Number</label>
+                                    <input type="text" name="account_number" id="account_number" class="md-input"
+                                        md-input ng-model="Register.account_number" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-2">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">more</i>
+                                    </span>
+                                    <label for="ifsc_code">IFSC Code</label>
+                                    <input type="text" name="ifsc_code" id="ifsc_code" class="md-input" md-input
+                                        ng-model="Register.ifsc_code" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="uk-grid" data-uk-grid-margin>
+                        <div class="uk-width-medium-1-2">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">account_balance</i>
+                                    </span>
+                                    <label for="bank_name">Bank Name</label>
+                                    <input type="text" name="bank_name" id="bank_name" class="md-input" md-input
+                                        ng-model="Register.bank_name" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-2">
+                            <div class="parsley-row  uk-margin-top">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">
+                                        <i class="material-icons">location_city</i>
+                                    </span>
+                                    <label for="branch_name">Branch Name</label>
+                                    <input type="text" name="branch_name" id="branch_name" class="md-input" md-input
+                                        ng-model="Register.branch_name" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="uk-grid" data-uk-grid-margin>
+                        <div class="uk-width-1-1 uk-text-center">
+                            <button type="submit" ng-if="Register.id == null" class="md-btn md-btn-primary"
+                                style="background-color: #634792"><span><i class="material-icons md-btn-primary"
+                                        style="background-color: #634792;color: white;">save </i></span> Submit</button>
+                            <button type="submit" ng-if="Register.id != null" class="md-btn md-btn-primary"
+                                style="background-color: #634792"><span><i class="material-icons md-btn-primary"
+                                        style="background-color: #634792;color: white;">save </i></span> Update</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+
+    </div>
+</div>

@@ -1,0 +1,206 @@
+<style type="text/css">
+    .dataTables_wrapper .dataTables_filter {
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        background-color: #efefef;
+    }
+
+    .heading_bg_text {
+        margin-left: -16px;
+    }
+
+    .toptext {
+        margin-top: -16px !important;
+    }
+
+    .uk-table td {
+        vertical-align: middle;
+    }
+</style>
+<div id="page_content">
+    <div id="page_content_inner">
+
+        <div class="md-card">
+            <div class="md-card-content topborder">
+                <!-- <div style="padding-top: 20px"> -->
+                <page-heading>Employees</page-heading>
+                <!-- </div> -->
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-1-1 uk-text-right">
+                        <a class="md-btn md-btn-primary md-btn-wave-light" ui-sref="restricted.register"
+                            data-uk-modal="{center:true}"
+                            style="text-transform: capitalize;float: right; background-color: #634792;">+ Add New</a>
+
+                    </div>
+                </div>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-1-1">
+                        <ul class="uk-tab" data-uk-tab="{connect:'#tabs_1', animation:'slide-left'}">
+                            <li class="uk-active"><a href="#" style="font-weight: bold;">Employees</a></li>
+                            <li><a href="#" style="font-weight: bold;">Relieved Employees</a></li>
+                        </ul>
+                        <ul id="tabs_1" class="uk-switcher uk-margin">
+                            <li>
+                                <div class="md-card-content">
+                                    <div style="margin-bottom: 15px;">
+                                        <table datatable="ng"  dt-column-defs="showCase.dtColumnDefs" class="uk-table" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th class="hi">Action</th>
+                                                    <th>Employee Id</th>
+                                                    <th>Full Name</th>
+                                                    <th>Family Name</th>
+                                                    <th>Gender</th>
+                                                    <th>Date of Birth</th>
+                                                    <th>Date of joining</th>
+                                                    <th>Position</th>
+                                                    <th>Email ID</th>
+                                                    <th>Phone Number</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Employee Id</th>
+                                                    <th>Full Name</th>
+                                                    <th>Family Name</th>
+                                                    <th>Gender</th>
+                                                    <th>Date of Birth</th>
+                                                    <th>Date of joining</th>
+                                                    <th>Position</th>
+                                                    <th>Email ID</th>
+                                                    <th>Phone Number</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                            </tfoot>
+                                            <tbody>
+                                                <tr ng-repeat="row in data" ng-class="{'row_checked': row.editable}">
+                                                    <td><a ui-sref="restricted.employee_view({Id:{{row.id}}})">
+                                                            <span class="md-icon material-icons"
+                                                                data-uk-tooltip="{pos:'top'}"
+                                                                title="View">remove_red_eye</span></a>
+                                                    </td>
+                                                    <td>{{row.employee_id}}</td>
+                                                    <td><a
+                                                            ui-sref="restricted.register({Id:{{row.id}}})">{{row.full_name}}</a>
+                                                    </td>
+                                                    <td>{{row.family_name}}</td>
+                                                    <td>{{row.gender}}</td>
+                                                    <td>{{row.birth |date:"dd-MM-yyyy"}}</td>
+                                                    <td>{{row.join |date:"dd-MM-yyyy"}}</td>
+                                                    <td>{{row.position}}</td>
+                                                    <td>{{row.email_id}}</td>
+                                                    <td>{{row.phone_number}}</td>
+                                                    <td>
+                                                        <div>
+                                                            <input type="checkbox" name="status" ng-true-value="1" ng-model="row.status" class="ts_checkbox" icheck>
+                                                              <!-- <input type="checkbox" class="switchery switchery-large"
+                                                                ui-switch ng-model="row.status" checked
+                                                                id="switch_demo_large" ng-change="check(row)" /> -->
+                                                        </div>
+                                                        <!-- <div ng-hide="row.editable">
+                                        <span ng-show="row.status" class="uk-badge uk-badge-success"><a href="#" ng-click="edit($event,$index)">Active</a></span>
+                                        <span ng-show="!row.status" class="uk-badge uk-badge-danger"><a href="#" ng-click="edit($event,$index)">Inactive</a></span>
+                                    </div> -->
+                                                    </td>
+                                                    <td>
+                                                        <div>
+                                                            <a href="" ng-click="save(row)"><i class="md-icon material-icons">&#xE161;</i></a>
+                                                            <a class="ts_remove_row" ng-click="delete(row.id)"><i class="md-icon material-icons">&#xE872;</i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-card-content">
+                                    <!--  <a class="md-btn md-btn-primary md-btn-wave-light" href="#mailbox_new_message" data-uk-modal="{center:true}" style="text-transform: capitalize;float: right;">+ Add New</a> -->
+                                    <div class="dt_colVis_buttons" style="margin-bottom: 15px;">
+                                        <table datatable="ng" dt-column-defs="showCase.dtColumnDefs" class="uk-table" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th class="hi">Action</th>
+                                                    <th>Employee Id</th>
+                                                    <th>Full Name</th>
+                                                    <th>Family Name</th>
+                                                    <th>Gender</th>
+                                                    <th>Date of Birth</th>
+                                                    <th>Date of joining</th>
+                                                    <th>Position</th>
+                                                    <th>Email ID</th>
+                                                    <th>Phone Number</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Employee Id</th>
+                                                    <th>Full Name</th>
+                                                    <th>Family Name</th>
+                                                    <th>Gender</th>
+                                                    <th>Date of Birth</th>
+                                                    <th>Date of joining</th>
+                                                    <th>Position</th>
+                                                    <th>Email ID</th>
+                                                    <th>Phone Number</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                            </tfoot>
+                                            <tbody>
+                                                <tr ng-repeat="row in data1" ng-class="{'row_checked': row.editable}">
+                                                    <td><a ui-sref="restricted.employee_view({Id:{{row.id}}})">
+                                                            <span class="md-icon material-icons"
+                                                                data-uk-tooltip="{pos:'top'}"
+                                                                title="View">remove_red_eye</span></a>
+                                                    </td>
+                                                    <td>{{row.employee_id}}</td>
+                                                    <td><a
+                                                            ui-sref="restricted.register({Id:{{row.id}}})">{{row.full_name}}</a>
+                                                    </td>
+                                                    <td>{{row.family_name}}</td>
+                                                    <td>{{row.gender}}</td>
+                                                    <td>{{row.birth}}</td>
+                                                    <td>{{row.join}}</td>
+                                                    <td>{{row.position}}</td>
+                                                    <td>{{row.email_id}}</td>
+                                                    <td>{{row.phone_number}}</td>
+                                                    <td>
+                                                        <div>
+                                                            <input type="checkbox" name="status" ng-checked="row.status == true" ng-model="row.status" class="ts_checkbox" icheck ng-change="check(row)">
+                                                            <!-- <input type="checkbox" class="switchery switchery-large"
+                                                                ui-switch ng-model="row.status" checked
+                                                                id="switch_demo_large" ng-change="check(row)" /> -->
+                                                        </div>
+                                                        <!-- <div ng-hide="row.editable">
+                                        <span ng-show="row.status" class="uk-badge uk-badge-success"><a href="#" ng-click="edit($event,$index)">Active</a></span>
+                                        <span ng-show="!row.status" class="uk-badge uk-badge-danger"><a href="#" ng-click="edit($event,$index)">Inactive</a></span>
+                                    </div> -->
+                                                    </td>
+                                                    <td>
+                                                        <div>
+                                                            <a href="" ng-click="save(row)"><i class="md-icon material-icons">&#xE161;</i></a>
+                                                            <a class="ts_remove_row" ng-click="delete(row.id)
+                                        "><i class="md-icon material-icons">&#xE872;</i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

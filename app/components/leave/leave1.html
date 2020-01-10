@@ -1,0 +1,209 @@
+<div id="page_content">
+    <div id="page_content_inner">
+
+        <!-- <h3 class="heading_b uk-margin-bottom">Datatables</h3> -->
+        <div class="md-card uk-margin-medium-bottom">
+            <div class="md-card-content large-padding topborder">
+                <div class="uk-grid" data-uk-grid-margin>
+                        <div class="uk-width-1-1">
+                <page-heading> Leave Request Approval </page-heading>
+                <ul class="uk-tab" data-uk-tab="{connect:'#tabs_1'}">
+                    <li class="uk-active"><a href="#">Leave Request</a></li>
+                    <li><a href="#">Leave Info</a></li>
+                </ul><br><br>
+                <ul id="tabs_1" class="uk-switcher uk-margin"><li>
+                <table datatable="ng" dt-options="showCase.dtOptions" dt-column-defs="showCase.dtColumnDefs" class="uk-table uk-table-align-vertical uk-table-striped uk-table-nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Employee Name</th>
+                            <th>Leave Type</th>
+                            <th>Form Date</th>
+                            <th>To Date</th>
+                            <th>Permission Date</th>
+                            <th>From Time</th>
+                            <th>To Time</th>
+                            <th>No of Days/Hrs</th>
+                            <th>Reason For Leave</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <!-- <tfoot>
+                        <tr>
+                            <th>EmployeeId/Name</th>
+                            <th>Date</th>
+                            <th>Date</th>
+                            <th>Leave Type</th>
+                            <th>No of Days</th>
+                            <th>Reason For Leave</th>
+                            <th>Remarks</th>
+                            <th>Status</th>
+                        </tr>
+                    </tfoot> -->
+                    <tbody>
+                        <tr ng-repeat="user in users" ng-class="{'row_checked': user.editable}">
+                            <td ng-model="user.id" style="text-align: center;">
+                                {{$index+1}}
+                            </td>
+                                <td ng-model="user.full_name" >
+                                    {{ user.full_name }}
+                                </td>
+                                <td ng-model="user.leave_type">
+                                    {{ user.leave_type }}
+                                </td>
+                                <td ng-model="user.from_date">
+                                    {{ user.from_date }}
+                                </td>
+                                <td  ng-model="user.to_date">
+                                    {{ user.to_date }}
+                                </td>
+                                <td ng-model="user.permission_date">
+                                    {{ user.permission_date }}
+                                </td>
+                                <td ng-model="user.from_time">
+                                    {{user.from_time}}
+                                </td>
+                                <td ng-model="user.to_time">
+                                    {{user.to_time}}
+                                </td>
+                                <td ng-model="user.totaldays">
+                                    {{user.totaldays}}
+                                </td>
+                                <td ng-model="user.leave_reason">
+                                    {{user.leave_reason}}
+                                </td>
+                                
+                
+                                <!-- <td>
+                                    <input type="text" class="md-input" ng-model="user.remarks" ng-show="user.editable" md-input>
+                                    <span ng-hide="user.editable">{{ user.remarks }}</span>
+                                </td> -->
+                               
+                               <td>
+                                <div style="margin-top: 10px">
+                                    <input required type="text" 
+                                                options="selectize_section_options" config="selectize_section_config"
+                                                 selectize data-uk-tooltip="{pos:'top'}"
+                                                title="" class=" uk-margin-small-bottom" ng-model="user.status" ng-change="save($event,$index,user)"> 
+                                    </div>
+                                </td>
+                                
+
+                            </tr>
+                    </tbody>
+                </table>
+            </li>
+                <li>
+                    <div class="md-card-content">
+                    <div class="uk-grid" data-uk-grid-margin>
+                        <div class="uk-width-medium-1-5"style="margin-top: 20px">
+                          <div class="uk-input-group">
+                            <span class="uk-input-group-addon"><i class="material-icons">person</i></span>
+                            <div class="parsley-row">
+                              <input config="selectize_val_employee" options="selectize_val_options" ng-model="Details.employee" required name="employee" selectize />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="uk-width-medium-1-5">
+                            <div class="uk-input-group">
+                                <span class="uk-input-group-addon">
+                                  <i class="md-list-addon-icon material-icons ico">date_range</i>
+                                </span>
+                                <label for="Form_date">From Date</label>
+                                <input type="text" name="from" id="Form_date" required class="md-input" data-parsley-americandate
+                                data-parsley-americandate-message="This value should be a valid date (YYYY-MM-DD)"
+                                data-uk-datepicker="{format:'DD-MM-YYYY'}" md-input class="md-input" ng-model="Details.from" />
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-5">
+                            <div class="uk-input-group">
+                                <span class="uk-input-group-addon">
+                                  <i class="md-list-addon-icon material-icons ico">date_range</i>
+                                </span>
+                                <label for="Form_date">To date</label>
+                                <input type="text" name="to" id="To_date" required class="md-input" data-parsley-americandate
+                                data-parsley-americandate-message="This value should be a valid date (YYYY-MM-DD)"
+                                data-uk-datepicker="{format:'DD-MM-YYYY'}" md-input class="md-input" ng-model="Details.to" />
+                              </div>
+                        </div>
+                        <div class="uk-width-medium-1-5"style="margin-top: 20px">
+                            <div class="uk-input-group">
+                              <span class="uk-input-group-addon"><i class="material-icons">person</i></span>
+                              <div class="parsley-row">
+                                <input required type="text" 
+                                                options="selectize_section_options" config="selectize_section_config"
+                                                 selectize data-uk-tooltip="{pos:'top'}"
+                                                title="" class=" uk-margin-small-bottom" ng-model="Details.status">
+                              </div>
+                            </div>
+                          </div>
+                        <div class="uk-width-medium-1-5">
+                            <div class="uk-input-group">
+                              <button type="submit" class="md-btn md-btn-primary" ng-click="find(Details)" style="background-color: #634792"><i class="material-icons">search</i> Find</button>
+                              <!-- <button  class="md-btn md-btn-primary" ng-click="Reset()" style="background-color: #634792">Reset</button> -->
+                            </div>
+                          </div>
+                      </div>
+                      </div>
+                <table datatable="ng" dt-options="showCase.dtOptions" dt-column-defs="showCase.dtColumnDefs" class="uk-table uk-table-align-vertical uk-table-striped uk-table-nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Employee Name</th>
+                            <th>Leave Type</th>
+                            <th>Form Date</th>
+                            <th>To Date</th>
+                            <th>Permission Date</th>
+                            <th>From Time</th>
+                            <th>To Time</th>
+                            <th>No of Days/Hrs</th>
+                            <th>Reason For Leave</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr ng-repeat="user in users1">
+                                
+                                <td>{{$index+1}}</td>
+                                
+                                <td>
+                                    {{ user.full_name }}
+                                </td>
+                                <td>
+                                    {{ user.leave_type }}
+                                </td>
+                                <td>
+                                    {{ user.from_date |date: "dd-MM-yyyy"}}
+                                </td>
+                                <td >
+                                    {{ user.to_date |date: "dd-MM-yyyy"}}
+                                </td>
+                                <td>
+                                    {{ user.permission_date |date: "dd-MM-yyyy"}}
+                                </td>
+                                <td>
+                                    {{user.from_time |date: "HH:mm"}}
+                                </td>
+                                <td>
+                                    {{user.to_time |date: "HH:mm"}}
+                                </td>
+                                <td>
+                                    {{user.totaldays}}
+                                </td>
+                                <td>
+                                    {{user.leave_reason}}
+                                </td>
+                                
+                                <td>{{user.status}}</td>
+                            </tr>
+                    </tbody>
+                </table>
+            </li></ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    

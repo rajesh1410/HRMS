@@ -1,0 +1,224 @@
+<div id="page_content">
+    <div id="page_content_inner">
+        <form id="form_validation" class="uk-form-stacked" ng-submit="save(attendance)">
+            <div class="md-card">
+                <div class="md-card-content large-padding topborder">
+                    <div class="heading_bg toptext">
+                        <div class="heading_bg_text">
+                            Manual Attendance
+                        </div>
+                        <div class="parallelogram"></div>
+                    </div>
+                    <div class="uk-grid" data-uk-grid-margin>
+                        <div class="uk-width-medium-1-3">
+                            <div class="uk-input-group">
+                                <span class="uk-input-group-addon">
+                                    <i class="material-icons">person</i>
+                                </span>
+                                <div class="parsley-row">
+                                    <label for="full_name"><span class="req">Employee Name</span></label>
+                                    <input config="selectize_val_config" options="selectize_val_options"
+                                        ng-model="attendance.employee_name" required name="val_select"
+                                        id="val_selectize" selectize />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3">
+                            <div class="uk-input-group">
+                                <span class="uk-input-group-addon">
+                                    <i class="material-icons">event</i>
+                                </span>
+                                <div class="parsley-row">
+                                    <label for="login_date">Login Date<span class="req">*</span></label>
+                                    <input type="text" name="date" id="login_date" ng-model="attendance.date" required
+                                        class="md-input" data-parsley-americandate
+                                        data-parsley-americandate-message="This value should be a valid date (DD-MM-YYYY)"
+                                        data-uk-datepicker="{format:'DD-MM-YYYY'}" md-input />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3">
+
+                            <div class="uk-input-group parsley-row">
+                                <span class="uk-input-group-addon">
+                                    <i class="md-list-addon-icon material-icons">school</i>
+                                </span>
+                                <div class="parsley-row">
+
+                                    <input id="login_type" style="color: black;" disabled type="text" name="login_type"
+                                        required class="md-input" md-input ng-model="attendance.login_type" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- login details -->
+                <div class="md-card-content large-padding">
+                    <div class="uk-grid" data-uk-grid-margin>
+
+                        <div class="uk-width-medium-1-3">
+                            <div class="uk-input-group">
+                                <span class="uk-input-group-addon"><i class="material-icons">alarm_add</i></span>
+                                <label for="login_start" class="uk-form-label">Login Time</label>
+                                <input class="md-input masked_input" id="masked_phone" type="text"
+                                    ng-model="attendance.start" data-inputmask="'mask': '99:99'"
+                                    data-inputmask-showmaskonhover="false" md-input />
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3">
+                            <div class="uk-input-group parsley-row">
+                                <span class="uk-input-group-addon">
+                                    <i class="md-list-addon-icon material-icons">school</i>
+                                </span>
+                                <div class="parsley-row">
+
+                                    <input id="lunch_type" disabled style="color: black;" type="text" name="lunch_type"
+                                        required class="md-input" md-input ng-model="attendance.lunch_type" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3">
+                            <div class="uk-input-group">
+                                <span class="uk-input-group-addon"><i class="material-icons">alarm_add</i></span>
+                                <label for="out_for_lunch" class="uk-form-label">Out For Lunch</label>
+                                <input class="md-input masked_input" id="out_for_lunch" type="text"
+                                    ng-model="attendance.out_for_lunch" data-inputmask="'mask': '99:99'"
+                                    data-inputmask-showmaskonhover="false" md-input />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md-card-content large-padding">
+                    <div class="uk-grid" data-uk-grid-margin>
+
+                        <div class="uk-width-medium-1-3">
+                            <div class="uk-input-group">
+                                <span class="uk-input-group-addon"><i class="material-icons">alarm_add</i></span>
+                                <label for="lunch_end" class="uk-form-label">Finished Lunch</label>
+                                <input class="md-input masked_input" id="masked_phone" type="text"
+                                    ng-model="attendance.lunch_end" data-inputmask="'mask': '99:99'"
+                                    data-inputmask-showmaskonhover="false" md-input />
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-3">
+                            <div class="uk-input-group">
+                                <span class="uk-input-group-addon"><i class="material-icons">alarm_add</i></span>
+                                <label for="login_end" class="uk-form-label">Logout Time</label>
+                                <input class="md-input masked_input" id="login_end" type="text"
+                                    ng-model="attendance.login_end" data-inputmask="'mask': '99:99'"
+                                    data-inputmask-showmaskonhover="false" md-input />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- login details end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- call details -->
+
+
+
+                <div class="md-card-content large-padding">
+                    <div class="heading_bg toptext">
+                        <div class="heading_bg_text">
+                            Break & Call Details
+                        </div>
+                        <div class="parallelogram"></div>
+                    </div>
+
+                    <div class="uk-grid uk-grid-medium form_hr" data-uk-grid-match ng-repeat="CB in attendance_data">
+
+                        <div class="uk-width-8-10 uk-width-medium-9-10">
+                            <div class="uk-grid" data-uk-grid-margin>
+
+                                <div class="uk-width-medium-1-3">
+                                    <div class="uk-input-group parsley-row">
+                                        <span class="uk-input-group-addon">
+                                            <i class="md-list-addon-icon material-icons">school</i>
+                                        </span>
+                                        <div class="parsley-row">
+                                            <label for="cb_type"><span class="req">Employee Name</span></label>
+                                            <input config="selectize_cb_config" options="selectize_cb_options"
+                                                ng-model="CB.cb_type" required name="cb_type" id="cb_type" selectize />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-medium-1-3">
+                                    <div class="uk-input-group">
+                                        <span class="uk-input-group-addon"><i
+                                                class="material-icons">alarm_add</i></span>
+                                        <label for="start" class="uk-form-label">Start Time</label>
+                                        <input class="md-input masked_input" id="start" type="text" ng-model="CB.start"
+                                            data-inputmask="'mask': '99:99'" data-inputmask-showmaskonhover="false"
+                                            md-input />
+                                    </div>
+
+                                </div>
+                                <div class="uk-width-medium-1-3">
+                                    <div class="uk-input-group">
+                                        <span class="uk-input-group-addon"><i
+                                                class="material-icons">alarm_add</i></span>
+                                        <label for="end" class="uk-form-label">End Time</label>
+                                        <input class="md-input masked_input" id="end" type="text" ng-model="CB.end"
+                                            data-inputmask="'mask': '99:99'" ng-change="myFunc($index,CB)"
+                                            data-inputmask-showmaskonhover="false" md-input />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-2-10 uk-width-medium-1-10 uk-text-center">
+                            <div class="uk-vertical-align uk-height-1-1">
+                                <div class="uk-vertical-align-middle">
+                                    <a ng-click="cloneSection()" ng-if="$last"><i
+                                            class="material-icons md-36">&#xE146;</i></a>
+                                    <a ng-click="deleteSection($event,$index)" ng-if="!$last"><i
+                                            class="material-icons md-36">&#xE872;</i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="uk-grid" data-uk-grid-margin>
+                        <div class="uk-width-1-1 uk-text-center">
+                            <button type="submit" class="md-btn md-btn-primary" ng-click="test(attendance)"
+                                style="background-color: #634792"><span><i class="material-icons md-btn-primary"
+                                        style="background-color: #634792;color: white;">save </i></span> Submit</button>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <!-- call details end -->
+
+
+
+
+
+
+            </div>
+
+
+
+        </form>
+
+    </div>
+</div>

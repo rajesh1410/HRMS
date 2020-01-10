@@ -1,0 +1,117 @@
+<div id="page_content">
+    <div id="page_content_inner" class="uk-padding-bottom-remove">
+
+        <div class="md-card ">
+            <div class="md-card-content large-padding topborder">
+
+                <div class="heading_bg toptext">
+                    <div class="heading_bg_text">
+                        Payroll
+                    </div>
+                    <div class="parallelogram"></div>
+                </div>
+
+
+
+
+                <div class="uk-grid uk-margin-left" data-uk-grid-margin>
+
+                    <div class="uk-width-medium-1-3 ">
+                        <div class="uk-input-group">
+                            <span class="uk-input-group-addon"><i class="material-icons">person</i></span>
+                            <label for="uk_dp_1">Select Id</label>
+                             <selectize id="lang_switcher1" name="lang_switcher1" config='langSwitcherConfig1' options='langSwitcherOptions1' ng-model="langSwitcherModel1" style="color-adjust: rgb(138, 145, 151)"></selectize>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3 ">
+                        <div class="uk-input-group">
+                            <span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-calendar"></i></span>
+                            <label for="uk_dp_1">Select date</label>
+                            <input class="md-input" type="text" id="uk_dp_1" data-uk-datepicker="{format:'DD.MM.YYYY'}" md-input ng-model="forms_advanced.datepicker">
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-6">
+                        <a class="md-btn md-btn-primary md-btn-wave-light" href="javascript:void(0)" style="background-color: #634792"><i class="material-icons">search</i> Find</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="page_content">
+    <div id="page_content_inner">
+
+
+        <div class="md-card uk-margin-medium-bottom ">
+            <div class="md-card-content " ng-controller="dt_default as showCase">
+
+                <table datatable="ng" dt-options="showCase.dtOptions" dt-column-defs="showCase.dtColumnDefs" class="uk-table" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th><strong>Emp ID</strong></th>
+                            <th><strong>Name</strong></th>
+                            <th><strong>DOJ</strong></th>
+                            <th><strong>No. of Days Present</strong></th>
+                            <th><strong>No. of Days Absent</strong></th>
+                            <th><strong>Work Hours to be</strong></th>
+                            <th><strong>Work Hour Utilized</strong></th>
+                            <th><strong>Lagged Hours</strong></th>
+                            <th><strong>Action</strong></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr ng-repeat="user in users" ng-class="{'row_checked': user.editable}">
+                            <td>
+
+                                <input type="text" class="md-input" ng-model="user.empid" ng-show="user.editable" md-input>
+                                <span ng-hide="user.editable">{{ user.empid }}</span>
+                            </td>
+                            <td>
+
+                                <input type="text" class="md-input" ng-model="user.employee_name" ng-show="user.editable" md-input>
+                                <span ng-hide="user.editable">{{ user.employee_name }}</span>
+                            </td>
+                            <td>
+
+                                <input type="text" class="md-input" ng-model="user.doj" ng-show="user.editable" md-input>
+                                <span ng-hide="user.editable">{{ user.doj }}</span>
+                            </td>
+                            <td>
+
+                                <input type="text" class="md-input" ng-model="user.present" ng-show="user.editable" md-input>
+                                <span ng-hide="user.editable">{{ user.present }}</span>
+                            </td>
+                            <td>
+
+                                <input type="text" class="md-input" ng-model="user.absent" ng-show="user.editable" md-input>
+                                <span ng-hide="user.editable">{{ user.absent }}</span>
+                            </td>
+
+                            <td>
+                                <input type="text" class="md-input" ng-model="user.Work_Hours" ng-show="user.editable" md-input>
+                                <span ng-hide="user.editable">{{ user.Work_Hours }}</span>
+                            </td>
+                            <td>
+                                <input type="text" class="md-input" ng-model="user.Hour_Utilized" ng-show="user.editable" md-input>
+                                <span ng-hide="user.editable">{{ user.Hour_Utilized }}</span>
+                            </td>
+                            <td>
+                                <input type="text" class="md-input" ng-model="user.Lagged_Hours" ng-show="user.editable" md-input>
+                                <span ng-hide="user.editable">{{ user.Lagged_Hours }}</span>
+                            </td>
+
+                            <td>
+                                <a href="#" ng-click="edit($event,$index)" ng-hide="user.editable"><i class="md-icon material-icons">&#xE254;</i></a>
+                                <a href="#" ng-click="save($event,$index)" ng-show="user.editable"><i class="md-icon material-icons">&#xE161;</i></a>
+                                <a href="#" ng-click="delete($event,$index,user.index + 1)"><i class="md-icon material-icons">&#xE872;</i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

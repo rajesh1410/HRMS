@@ -1,0 +1,90 @@
+<style type="text/css">
+.dataTables_wrapper .dataTables_filter {
+border: 1px solid rgba(0, 0, 0, 0.2);
+background-color: #efefef;
+}
+.uk-table td{
+vertical-align: middle;
+}
+</style>
+<div id="page_content">
+  <div id="page_content_inner">
+    <div class="md-card">
+      <div class="md-card-content large-padding topborder">
+      <page-heading>Find Trainee Data</page-heading>
+      <div class="uk-grid" data-uk-grid-margin>
+        <div class="uk-width-medium-1-3">
+          <div class="uk-input-group">
+            <span class="uk-input-group-addon"><i class="material-icons">person</i></span>
+            <div class="parsley-row">
+              <tinput config="selectize_val_config" options="selectize_val_options" ng-model="Search.Traineename" required name="val_select" id="val_selectize" selectize />
+            </div>
+          </div>
+        </div>
+        <div class="uk-width-medium-1-3">
+          <div class="uk-input-group">
+            <span class="uk-input-group-addon"><i class="material-icons">laptop_chromebook</i></span>
+            <div class="parsley-row">
+              <input config="selectize_val_config1" options="selectize_val_options1" ng-model="Search.Course" required name="val_select" id="val_selectize" selectize />
+            </div>
+          </div>
+        </div>
+        <div class="uk-width-medium-1-3">
+          <div class="uk-input-group">
+            <button type="submit" class="md-btn md-btn-primary" ng-click="Find(Search)" style="background-color: #634792"><i class="material-icons">search</i> Find</button>
+            <button  class="md-btn md-btn-primary" ng-click="Reset()" style="background-color: #634792">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="md-card">
+      <div class="md-card-content large-padding topborder">
+      <page-heading>Trainee Datatable</page-heading>
+    <div class="md-card-content">
+      <a class="md-btn md-btn-primary md-btn-wave-light" ui-sref="restricted.Trainee" data-uk-modal="{center:true}" style="text-transform: capitalize;float: right; background-color: #634792;">+ Add New</a>
+      <div  class="dt_colVis_buttons" style="margin-bottom: 15px;"></div>
+      <table  datatable="ng" dt-options="showCase.dtOptions" class="uk-table uk-table-align-vertical uk-table-striped uk-table-nowrap" cols="20" width="100%">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Trainee Name</th>
+            <th>Course</th>
+            <th>Course Duration</th>
+            <th>Course Start Date</th>
+            <th>Course End Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <tr ng-repeat="trainee in traineesData" ng-class="{'row_checked': trainee.editable}">
+            <td>
+              {{$index+1}}
+            </td>
+            <td>
+              {{ trainee.Traineename }}
+            </td>
+            <td>
+              {{ trainee.Course }}
+            </td>
+            <td>
+              {{ trainee.Duration }}
+            </td>
+            <td>
+              {{ trainee.Start_date }}
+            </td>
+            <td>
+              {{trainee.End_date}}
+            </td>
+            <td uk-align-center>
+              <a ui-sref="restricted.Trainee({Id:{{trainee.id}}})" ><i class="md-icon material-icons">&#xE254;</i></a>
+              <a href="" ng-click="delete($event,$index,trainee)"><i class="md-icon material-icons">&#xE872;</i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>

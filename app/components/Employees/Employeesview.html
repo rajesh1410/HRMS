@@ -1,0 +1,172 @@
+<style type="text/css">
+
+    .dataTables_wrapper .dataTables_filter {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #efefef;
+}
+ .heading_bg_text{
+            margin-left: -16px;
+    }
+    .toptext{
+        margin-top: -16px !important;
+    }
+    .uk-table td{
+        vertical-align: middle;
+    }
+
+</style>
+<div id="page_content">
+    <div id="page_content_inner">
+        <div class="md-card">
+            <div class="md-card-content topborder">
+                <!-- <div style="padding-top: 20px"> -->
+                <page-heading>Employees</page-heading>
+            <!-- </div> -->
+                    <div class="uk-grid" data-uk-grid-margin>
+                        <div class="uk-width-1-1">
+                            <ul class="uk-tab" data-uk-tab="{connect:'#tabs_1', animation:'slide-left'}">
+                                <li class="uk-active"><a href="#" style="font-weight: bold;">Employees</a></li>
+                                <li><a href="#" style="font-weight: bold;">Relieved Employees</a></li>
+                            </ul>
+                            <ul id="tabs_1" class="uk-switcher uk-margin">
+                                <li><div class="md-card-content" ng-controller="EmployeesCtrl as showCase">
+            
+            <a class="md-btn md-btn-primary md-btn-wave-light" ui-sref="restricted.register" data-uk-modal="{center:true}" style="text-transform: capitalize;float: right; background-color: #634792;">+ Add New</a>
+                <div class="dt_colVis_buttons" style="margin-bottom: 15px;"></div>
+                <table datatable="ng" dt-options="showCase.dtOptions" dt-column-defs="showCase.dtColumnDefs" dt-instance="showCase.dtInstance" class="uk-table" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th class="hi">Action</th>
+                            <th>Employee Id</th>
+                            <th>Full Name</th>
+                            <th>Family Name</th>
+                            <th>Gender</th>
+                            <th>Date of Birth</th>
+                            <th>Date of joining</th>
+                            <th>Position</th>
+                            <th>Email ID</th>
+                            <th>Phone Number</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>    <th></th>
+                            <th>Employee Id</th>
+                            <th>Full Name</th>
+                            <th>Family Name</th>
+                            <th>Gender</th>
+                            <th>Date of Birth</th>
+                            <th>Date of joining</th>
+                            <th>Position</th>
+                            <th>Email ID</th>
+                            <th>Phone Number</th>
+                            <th></th>
+                            <th></th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr ng-repeat="employee in traineesData" ng-class="{'row_checked': row.editable}">
+                            <td><a ui-sref="restricted.employee_view({Id:{{employee.id}}})" >
+                                <span class="md-icon material-icons" data-uk-tooltip="{pos:'top'}" title="View">remove_red_eye</span></a>
+                            </td>
+                            <td>{{employee.employee_id}}</td>
+                            <td><a ui-sref="restricted.register({Id:{{employee.id}}})" >{{employee.full_name}}</a></td>
+                            <td>{{employee.family_name}}</td>
+                            <td>{{employee.gender}}</td>
+                            <td>{{employee.birth}}</td>
+                            <td>{{employee.join}}</td>
+                            <td>{{employee.position}}</td>
+                            <td>{{employee.email_id}}</td>
+                            <td>{{employee.phone_number}}</td>
+                            <td>
+                                    <div class="icheck-wrapper" ng-show="user.editable" >
+                                        <input type="checkbox" ng-model="user.isActive" icheck>
+                                    </div>
+                                    <div ng-hide="user.editable">
+                                        <span ng-show="user.isActive" class="uk-badge uk-badge-success">Active</span>
+                                        <span ng-show="!user.isActive" class="uk-badge uk-badge-danger">Inactive</span>
+                                    </div>
+                            </td>
+                                    <td>
+                                        <div>
+                                        <a class="ts_remove_row" ng-click="delete(employee.id)
+                                        "><i class="md-icon material-icons">&#xE872;</i></a>&nbsp;&nbsp;<a href="#" ng-click="save($event,$index)" ng-show="row.editable"><i class="md-icon material-icons">&#xE161;</i></a></div>
+                                    </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </li>
+                                <li><div class="md-card-content" ng-controller="EmployeesCtrl as showCase">
+
+           <!--  <a class="md-btn md-btn-primary md-btn-wave-light" href="#mailbox_new_message" data-uk-modal="{center:true}" style="text-transform: capitalize;float: right;">+ Add New</a> -->
+                <div class="dt_colVis_buttons" style="margin-bottom: 15px;"></div>
+                <table datatable="ng" dt-options="showCase.dtOptions" dt-column-defs="showCase.dtColumnDefs" dt-instance="showCase.dtInstance" class="uk-table" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Employee Id</th>
+                            <th>Full Name</th>
+                            <th>Family Name</th>
+                            <th>Gender</th>
+                            <th>Date of Birth</th>
+                            <th>Date of joining</th>
+                            <th>Position</th>
+                            <th>Email ID</th>
+                            <th>Phone Number</th>
+                            <th style="text-align: center;">Action</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>    <th></th>
+                            <th>Employee Id</th>
+                            <th>Full Name</th>
+                            <th>Family Name</th>
+                            <th>Gender</th>
+                            <th>Date of Birth</th>
+                            <th>Date of joining</th>
+                            <th>Position</th>
+                            <th>Email ID</th>
+                            <th>Phone Number</th>
+                            <th></th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr ng-repeat="row in dataa" ng-class="{'row_checked': row.editable}">
+                            <td><i class="md-icon material-icons" data-uk-tooltip="{pos:'top'}" title="View">remove_red_eye</i></td>
+                            <td><a href="#" ng-click="edit($event,$index)" ng-hide="row.editable"><i class="md-icon material-icons">&#xE254;</i></a>
+                                    <a href="#" ng-click="save($event,$index)" ng-show="row.editable"><i class="md-icon material-icons">&#xE161;</i></a>{{row.like1}}</td>
+                            <td>{{row.like2}}</td>
+                            <td>{{row.like3}}</td>
+                            <td>{{row.like4}}</td>
+                            <td>{{row.like5}}</td>
+                            <td>{{row.like6}}</td>
+                            <td>{{row.like7}}</td>
+                            <td>{{row.like8}}</td>
+                            <td>{{row.like9}}</td>
+                            <td><div class="icheck-wrapper" ng-show="row.editable" >
+                                        <input type="checkbox" ng-model="row.isActive" icheck>
+                                    </div>
+                                    <div ng-hide="row.editable">
+                                        <span ng-show="row.isActive" class="uk-badge uk-badge-success">Active</span>
+                                        <span ng-show="!row.isActive" class="uk-badge uk-badge-danger">Inactive</span>&nbsp;&nbsp;<span><i
+                            class="md-icon material-icons" title="View">delete</i></span>
+                                    </div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+         </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            
+        </div>
+    
+
+
+      </div>
+</div>
